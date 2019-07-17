@@ -2,5 +2,18 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/com.ibm.icu_63.1.0.v20181030-1705.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.commands_3.9.300.v20190215-1957.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.core.runtime_3.15.200.v20190301-1641.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.10.400.v20190516-1504.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.p2.core_2.6.0.v20190215-2242.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.equinox.registry_3.8.300.v20190218-2100.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.15.100.v20190222-1334.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface.text_3.15.100.v20190305-0811.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.13.300.v20190218-1622.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.text_3.8.100.v20190306-1823.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ui.forms_3.7.500.v20190216-1545.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.ui.workbench_3.113.0.v20190219-1432.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
