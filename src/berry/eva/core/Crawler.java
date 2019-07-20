@@ -22,7 +22,7 @@ public class Crawler {
 
 	private List<Context> list_context = new ArrayList<Context>();
 	
-	private void sendGet(String targetUrl) throws IOException {
+	String sendGet(String targetUrl) throws IOException {
 		URL url = new URL(targetUrl);
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		con.setRequestMethod("GET");
@@ -40,12 +40,15 @@ public class Crawler {
 		}
 		in.close();
 		
+		
 		// print result
 		System.out.println("HTTP responseCode : " + responseCode );
 		System.out.println("HTTP body : " + response.toString());
+		
+		return response.toString();
 	}
 	
-	private void sendPost(String targetUrl, String parameters) throws IOException {
+	void sendPost(String targetUrl, String parameters) throws IOException {
 		
 		URL url = new URL(targetUrl);
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
