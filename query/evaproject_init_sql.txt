@@ -1,0 +1,2 @@
+﻿CREATE USER evaproject IDENTIFIED BY ********;
+GRANT CREATE table, CREATE session, CREATE view to evaproject;
