@@ -15,9 +15,9 @@ public final class URLQueue {
 		return instance;
 	}
 
-	public synchronized Context peek() {
-		return queue.peek();
-	}
+//	public synchronized Context peek() {
+//		return queue.peek();
+//	}
 
 	public synchronized Context poll() {
 		return queue.poll();
@@ -29,6 +29,10 @@ public final class URLQueue {
 
 	public synchronized boolean isEmpty() {
 		return queue.isEmpty();
+	}
+	
+	public synchronized boolean clearAll() {
+		return queue.removeAll(queue);
 	}
 
 }
