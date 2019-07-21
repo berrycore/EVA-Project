@@ -10,4 +10,10 @@ public final class Validator {
 	}
 	
 
+	public static boolean isinScope(String url) {
+		SearchEngine engine = SearchEngine.getInstance();
+		String domain = engine.getCurrentDomain();
+		return url.contains(domain);
+	}
+	
 }

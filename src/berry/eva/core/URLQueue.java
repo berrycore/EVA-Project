@@ -5,7 +5,7 @@ import java.util.Queue;
 
 public final class URLQueue {
 
-	private Queue<Context> queue = new LinkedList<Context>();
+	private Queue<String> queue = new LinkedList<String>();
 	private static URLQueue instance = new URLQueue();
 
 	private URLQueue() {
@@ -15,24 +15,34 @@ public final class URLQueue {
 		return instance;
 	}
 
-//	public synchronized Context peek() {
-//		return queue.peek();
-//	}
-
-	public synchronized Context poll() {
-		return queue.poll();
+	public synchronized String poll() {
+		String url = queue.poll();
+		System.out.println("[" + queue.size() + "] poll : " + url);
+		return url;
 	}
 
-	public synchronized boolean offer(Context context) {
-		return queue.offer(context);
+	public synchronized boolean offer(String url) {
+		
+		if(queue.contains(url)) {
+			System.out.println("[" + queue.size() + "] 포함 : " + url);
+			return false;
+		}else {
+			System.out.println("[" + queue.size() + "] not 포함 : offer!! : " + url);
+			
+			return queue.offer(url);	
+		}
 	}
 
 	public synchronized boolean isEmpty() {
 		return queue.isEmpty();
 	}
-	
+
 	public synchronized boolean clearAll() {
 		return queue.removeAll(queue);
+	}
+	
+	public synchronized String peek() {
+		return queue.peek();
 	}
 
 }
