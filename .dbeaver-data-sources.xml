@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data-sources>
-	<data-source id="oracle_thin-16c13d171c8-7a94bfa7d44d70e" provider="oracle" driver="oracle_thin" name="Oracle - XE" save-password="true" read-only="false">
+	<data-source id="oracle_thin-16c13d171c8-7a94bfa7d44d70e" provider="oracle" driver="oracle_thin" name="Oracle - XE(system)" save-password="true" read-only="false">
 		<connection host="localhost" port="1521" server="" database="XE" url="jdbc:oracle:thin:@//localhost:1521/XE" user="system" password="BQ8CK0dIV0dWcuc=" home="C:\app\berry\product\18.0.0\dbhomeXE" type="dev">
 			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
 			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
@@ -11,6 +11,30 @@
 			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
 			<provider-property name="@dbeaver-meta-use-sys-schema@" value="false"/>
 			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+		</connection>
+	</data-source>
+	<data-source id="oracle_thin-16c13e79898-60196c417eb4c78a" provider="oracle" driver="oracle_thin" name="Oracle - XE(evaproject)" save-password="true" read-only="false">
+		<connection host="localhost" port="1521" server="" database="XE" url="jdbc:oracle:thin:@//localhost:1521/XE" user="evaproject" password="FhIHMFNMThMGBmbf" home="C:\app\berry\product\18.0.0\dbhomeXE" type="dev">
+			<property name="useFetchSizeWithLongColumn" value="true"/>
+			<property name="loginTimeout" value="20"/>
+			<provider-property name="@dbeaver-always-use-dba-views@" value="false"/>
+			<provider-property name="@dbeaver-sid-service@" value="SERVICE"/>
+			<provider-property name="@dbeaver-meta-use-simple-constraints@" value="false"/>
+			<provider-property name="@dbeaver-use-rule-hint@" value="false"/>
+			<provider-property name="@dbeaver-use-meta-optimizer@" value="false"/>
+			<provider-property name="@dbeaver-connection-type@" value="BASIC"/>
+			<provider-property name="@dbeaver-check-schema-content@" value="false"/>
+			<provider-property name="@dbeaver-meta-use-sys-schema@" value="false"/>
+			<provider-property name="@dbeaver-always-show-dba@" value="false"/>
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="true">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="implementation" value="jsch"/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="true">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
 		</connection>
 	</data-source>
 	<filters/>
