@@ -25,8 +25,7 @@ public final class Analyzer {
 			Element link = iter.next();
 			String url = link.attr("abs:href");
 			if(Validator.isinScope(url)) {
-				SearchEngine engine = SearchEngine.getInstance();
-				engine.offer(url);
+	
 			}
 		}
 	}
