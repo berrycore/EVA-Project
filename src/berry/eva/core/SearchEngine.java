@@ -18,7 +18,6 @@ public class SearchEngine implements Runnable {
 	};
 
 	private static SearchEngine instance = new SearchEngine();
-	// private URLQueue urlQueue = URLQueue.getInstance();
 	private String domain;
 	private String root;
 	private HashSet<String> links = new HashSet<String>();
@@ -79,6 +78,11 @@ public class SearchEngine implements Runnable {
 
 			} catch (IOException e) {
 				System.err.println("For '" + URL + "': " + e.getMessage());
+				if (e.getMessage().contains(
+						"Unhandled content type. Must be text/*, application/xml, or application/xhtml+xml")) {
+					links.add(URL);
+				}
+
 			}
 		}
 	}
