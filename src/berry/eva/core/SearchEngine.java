@@ -61,7 +61,9 @@ public class SearchEngine implements Runnable {
 				// 4. (i) If not add it to the index
 
 				if (links.add(URL)) {
+					// TODO: db or collection store
 					System.out.println(URL);
+
 				}
 
 				// 2. Fetch the HTML code
