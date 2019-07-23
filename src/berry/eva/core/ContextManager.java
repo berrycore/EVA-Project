@@ -10,17 +10,7 @@ public class ContextManager {
 		return instance;
 	}
 	
-	private static Integer count = 1;
-
-	public static Context generate(String url) {
-		Context context = new Context();
-		context.setIndex(count++);
-		context.setTime_request(getCurrentTime());
-		context.setUrl(url);
-		context.setScanned(false);
-		return context;
-	}
-	
+		
 	private static String getCurrentTime() {
 		long time = System.currentTimeMillis();
 		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");

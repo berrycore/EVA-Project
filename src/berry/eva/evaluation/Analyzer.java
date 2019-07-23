@@ -1,7 +1,6 @@
 package berry.eva.evaluation;
 
 import berry.eva.core.URLQueue;
-import berry.eva.util.PayloadGenerator;
 
 public final class Analyzer implements Runnable{
 	
