@@ -11,9 +11,6 @@ public final class Analyzer implements Runnable{
 		return instance;
 	}
 
-	public void analyze(PayloadGenerator generator) {
-		
-	}
 
 	@Override
 	public void run() {

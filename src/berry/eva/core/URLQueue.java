@@ -1,5 +1,6 @@
 package berry.eva.core;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -30,6 +31,10 @@ public final class URLQueue {
 			System.out.println("[" + queue.size() + "] not Æ÷ÇÔ : offer!! : " + url);
 			return queue.offer(url);	
 		}
+	}
+	
+	public Iterator<String> iterator(){
+		return this.iterator();
 	}
 
 	public synchronized int getSize() {
