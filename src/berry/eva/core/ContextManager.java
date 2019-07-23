@@ -1,7 +1,7 @@
 package berry.eva.core;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 public class ContextManager {
 	private ContextManager() {}
@@ -10,10 +10,15 @@ public class ContextManager {
 		return instance;
 	}
 	
-		
-	private static String getCurrentTime() {
-		long time = System.currentTimeMillis();
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		return dayTime.format(new Date(time));
+	private List<Context> list_context = new LinkedList<Context>();
+	
+	public List<Context> getList(){
+		return this.list_context;
 	}
+		
+//	private static String getCurrentTime() {
+//		long time = System.currentTimeMillis();
+//		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+//		return dayTime.format(new Date(time));
+//	}
 }
