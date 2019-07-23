@@ -4,11 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ContextManager {
-	
-	private static ContextManager instance = new ContextManager();
-	
 	private ContextManager() {}
-	
+	private static ContextManager instance = new ContextManager();
 	public static ContextManager getInstance() {
 		return instance;
 	}

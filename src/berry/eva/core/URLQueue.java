@@ -28,11 +28,14 @@ public final class URLQueue {
 			return false;
 		}else {
 			System.out.println("[" + queue.size() + "] not Æ÷ÇÔ : offer!! : " + url);
-			
 			return queue.offer(url);	
 		}
 	}
 
+	public synchronized int getSize() {
+		return queue.size();
+	}
+	
 	public synchronized boolean isEmpty() {
 		return queue.isEmpty();
 	}
