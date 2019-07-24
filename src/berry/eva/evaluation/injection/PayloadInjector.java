@@ -1,12 +1,8 @@
 package berry.eva.evaluation.injection;
 
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
 
 import berry.eva.core.Context;
 import berry.eva.core.URLQueue;

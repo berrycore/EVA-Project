@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import berry.eva.core.URLQueue;
-import berry.eva.evaluation.scan.DummyScan;
 import berry.eva.evaluation.scan.HTTPMethodScan;
 
 public final class Analyzer implements Runnable{

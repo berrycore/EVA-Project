@@ -10,10 +10,25 @@ public final class Context {
 	private String Resp_Code;
 	private String Resp_Reason;
 	private String Resp_Body;
-	private String Result_id;
+	private String CWE_ID;
 
 	public Context() {
 
+	}
+
+	public Context(Integer id, String uRL, String method, String req_Timestamp, String req_Header,
+			String resp_Timestamp, String resp_Code, String resp_Reason, String resp_Body, String cWE_ID) {
+		super();
+		this.id = id;
+		URL = uRL;
+		this.method = method;
+		Req_Timestamp = req_Timestamp;
+		Req_Header = req_Header;
+		Resp_Timestamp = resp_Timestamp;
+		Resp_Code = resp_Code;
+		Resp_Reason = resp_Reason;
+		Resp_Body = resp_Body;
+		CWE_ID = cWE_ID;
 	}
 
 	public Integer getId() {
@@ -88,10 +103,19 @@ public final class Context {
 		Resp_Body = resp_Body;
 	}
 
+	public String getCWE_ID() {
+		return CWE_ID;
+	}
+
+	public void setCWE_ID(String cWE_ID) {
+		CWE_ID = cWE_ID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((CWE_ID == null) ? 0 : CWE_ID.hashCode());
 		result = prime * result + ((Req_Header == null) ? 0 : Req_Header.hashCode());
 		result = prime * result + ((Req_Timestamp == null) ? 0 : Req_Timestamp.hashCode());
 		result = prime * result + ((Resp_Body == null) ? 0 : Resp_Body.hashCode());
@@ -113,6 +137,11 @@ public final class Context {
 		if (getClass() != obj.getClass())
 			return false;
 		Context other = (Context) obj;
+		if (CWE_ID == null) {
+			if (other.CWE_ID != null)
+				return false;
+		} else if (!CWE_ID.equals(other.CWE_ID))
+			return false;
 		if (Req_Header == null) {
 			if (other.Req_Header != null)
 				return false;
@@ -165,7 +194,7 @@ public final class Context {
 	public String toString() {
 		return "Context [id=" + id + ", URL=" + URL + ", method=" + method + ", Req_Timestamp=" + Req_Timestamp
 				+ ", Req_Header=" + Req_Header + ", Resp_Timestamp=" + Resp_Timestamp + ", Resp_Code=" + Resp_Code
-				+ ", Resp_Reason=" + Resp_Reason + ", Resp_Body=" + Resp_Body + "]";
+				+ ", Resp_Reason=" + Resp_Reason + ", Resp_Body=" + Resp_Body + ", CWE_ID=" + CWE_ID + "]";
 	}
 
 }
