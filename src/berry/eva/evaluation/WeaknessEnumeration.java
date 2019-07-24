@@ -6,9 +6,15 @@ import berry.eva.evaluation.Category;
 
 public class WeaknessEnumeration {
 
+	private static WeaknessEnumeration instance = new WeaknessEnumeration();
+	
+	public static WeaknessEnumeration getInstance() {
+		return instance;
+	}
+	
 	private Map<String, Weakness> map = new HashMap<String, Weakness>();
 	
-	public WeaknessEnumeration() {
+	private WeaknessEnumeration() {
 		//TODO : form Databases;
 		
 		// dummy data
@@ -107,5 +113,9 @@ public class WeaknessEnumeration {
 	
 	public Weakness get(String CWE_ID) {
 		return map.get(CWE_ID);
+	}
+	
+	public Map<String, Weakness> getWeaknessMap(){
+		return this.map;
 	}
 }
