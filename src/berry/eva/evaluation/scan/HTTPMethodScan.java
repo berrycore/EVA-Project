@@ -8,7 +8,7 @@ import org.jsoup.Connection.Method;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
 
-import berry.eva.evaluation.AttackClassification;
+import berry.eva.evaluation.Category;
 import berry.eva.evaluation.Result;
 
 public class HTTPMethodScan extends AbstractScan {
@@ -27,7 +27,8 @@ public class HTTPMethodScan extends AbstractScan {
 			e.printStackTrace();
 		}
 		
-		return new Result(AttackClassification.SecurityMisconfiguration, "HEAD", "HEAD allowed");
+		return null;
+		//TODO : definition required
 	}
 
 }

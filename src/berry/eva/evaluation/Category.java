@@ -1,6 +1,6 @@
 package berry.eva.evaluation;
 
-public enum AttackClassification {
+public enum Category {
 
 	Injection, 
 	BrokenAuthentication, 

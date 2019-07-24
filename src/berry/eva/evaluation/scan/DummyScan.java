@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import berry.eva.core.Context;
-import berry.eva.evaluation.AttackClassification;
+import berry.eva.evaluation.Category;
 import berry.eva.evaluation.Result;
 
 public final class DummyScan extends AbstractScan {
@@ -45,6 +45,6 @@ public final class DummyScan extends AbstractScan {
 			e2.printStackTrace();
 		}
 		
-		return new Result(AttackClassification.SecurityMisconfiguration, "DefaultScan", "description");
+		return new Result(Category.SecurityMisconfiguration, "DefaultScan", "description");
 	}
 }

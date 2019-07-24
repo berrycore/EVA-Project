@@ -10,7 +10,7 @@ public final class Context {
 	private String Resp_Code;
 	private String Resp_Reason;
 	private String Resp_Body;
-	
+	private String Result_id;
 
 	public Context() {
 
