@@ -62,6 +62,50 @@ public class WeaknessEnumeration {
 		Weakness CWE_223 = new Weakness(Category.InsufficientLoggingMonitoring, "CWE_223", "Omission of Security-relevant Information", "The application does not record or display information that would be important for identifying the source or nature of an attack, or determining if an action is safe.");
 		Weakness CWE_778 = new Weakness(Category.InsufficientLoggingMonitoring, "CWE_778", "Insufficient Logging", "When a security-critical event occurs, the software either does not record the event or omits important details about the event when logging it.");
 		
-		map.put(key, value)
+		map.put("CWE_77", CWE_77);
+		map.put("CWE_78", CWE_78);
+		map.put("CWE_88", CWE_88);
+		map.put("CWE_89", CWE_89);
+		map.put("CWE_90", CWE_90);
+		map.put("CWE_91", CWE_91);
+		map.put("CWE_564", CWE_564);
+		map.put("CWE_917", CWE_917);
+		map.put("CWE_943", CWE_943);
+		map.put("CWE_256", CWE_256);
+		map.put("CWE_287", CWE_287);
+		map.put("CWE_308", CWE_308);
+		map.put("CWE_384", CWE_384);
+		map.put("CWE_522", CWE_522);
+		map.put("CWE_523", CWE_523);
+		map.put("CWE_613", CWE_613);
+		map.put("CWE_620", CWE_620);
+		map.put("CWE_640", CWE_640);
+		map.put("CWE_220", CWE_220);
+		map.put("CWE_295", CWE_295);
+		map.put("CWE_311", CWE_311);
+		map.put("CWE_312", CWE_312);
+		map.put("CWE_319", CWE_319);
+		map.put("CWE_325", CWE_325);
+		map.put("CWE_326", CWE_326);
+		map.put("CWE_327", CWE_327);
+		map.put("CWE_328", CWE_328);
+		map.put("CWE_359", CWE_359);
+		map.put("CWE_611", CWE_611);
+		map.put("CWE_776", CWE_776);
+		map.put("CWE_22", CWE_22);
+		map.put("CWE_284", CWE_284);
+		map.put("CWE_285", CWE_285);
+		map.put("CWE_425", CWE_425);
+		map.put("CWE_639", CWE_639);
+		map.put("CWE_209", CWE_209);
+		map.put("CWE_548", CWE_548);
+		map.put("CWE_79", CWE_79);
+		map.put("CWE_502", CWE_502);
+		map.put("CWE_223", CWE_223);
+		map.put("CWE_778", CWE_778);
+	}
+	
+	public Weakness get(String CWE_ID) {
+		return map.get(CWE_ID);
 	}
 }
