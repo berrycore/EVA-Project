@@ -4,36 +4,51 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
 
 public final class MainApplication extends ApplicationWindow {
 
 	public MainApplication() {
 		super(null);
 		this.addMenuBar();
+		this.addStatusLine();
+		
 	}
 
 	@Override
 	protected Control createContents(Composite parent) {
-		Text text = new Text(parent, SWT.CENTER);
-		text.setText("Hello JFace");
-		//parent.pack();
-		return parent;
+//		TODO : layout!!
+		Composite composite = new Composite(parent, SWT.NONE);
+		composite.setLayout(new GridLayout(1, false));
+				
+		
+		TreeViewer tv = new TreeViewer(composite);
+		tv.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
+		tv.setLabelProvider(new SiteTreeLabelProvider());
+		tv.setContentProvider(new SiteTreeContentProvider());
+		tv.setInput("root");
+		
+		setStatus("Status is ready!");
+		return composite;
 	}
 	
 	
-
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setSize(500, 400);
 		shell.setText("EVA-Project");
+		
 	}
+
+	
 
 	@Override
 	protected MenuManager createMenuManager() {
