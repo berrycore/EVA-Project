@@ -1,5 +1,9 @@
 package berry.eva.application;
 
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -9,21 +13,28 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 public final class MainApplication extends ApplicationWindow {
-
+	private static MainApplication instance;
+	public static MainApplication getInstance() {
+		return instance;
+	}
+	private TableViewer tableViewer;
+	
 	public MainApplication() {
 		super(null);
 		this.addMenuBar();
 		this.addStatusLine();
-		
+		instance = this;
 	}
 
 	@Override
@@ -33,6 +44,8 @@ public final class MainApplication extends ApplicationWindow {
 		SashForm sash_horizontal = new SashForm(sash_vertical, SWT.HORIZONTAL);
 		sash_vertical.setSashWidth(5);
 		sash_horizontal.setSashWidth(5);
+		sash_vertical.setLayout(new FillLayout());
+		sash_horizontal.setLayout(new FillLayout());
 				
 		TreeViewer treeViewer = new TreeViewer(sash_horizontal);
 		treeViewer.getTree().setLayoutData(new GridData(GridData.FILL_VERTICAL));
@@ -44,6 +57,10 @@ public final class MainApplication extends ApplicationWindow {
 		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
 		tab_quick.setText("Start");
 		
+		StartComposite startComposite = new StartComposite(folder_start, SWT.NONE);
+		startComposite.setVisible(true);
+		tab_quick.setControl(startComposite);
+		
 		TabItem tab_request_response = new TabItem(folder_start, SWT.NONE);
 		tab_request_response.setText("Request & Response");
 		
@@ -52,14 +69,12 @@ public final class MainApplication extends ApplicationWindow {
 		TabItem tab_spider = new TabItem(folder_crawler, SWT.NONE);
 		tab_spider.setText("Spider");
 		
+		SpiderComposite spiderComposite = new SpiderComposite(folder_crawler, SWT.NULL);
+		tab_spider.setControl(spiderComposite);
+		
 //		Text text_spider = new Text(folder_crawler, SWT.BOLD);
 //		text_spider.setText("Table Here !!");
 //		tab_spider.setControl(text_spider);
-		TableViewer tableViewer = new TableViewer(folder_crawler);
-		tableViewer.setContentProvider(new SpiderContentProvider());
-		tableViewer.setLabelProvider(new SpiderLabelProvider());
-		
-		//tab_spider.setControl(control);
 		
 		
 		TabItem tab_scan = new TabItem(folder_crawler, SWT.NONE);
@@ -76,6 +91,9 @@ public final class MainApplication extends ApplicationWindow {
 		return parent;
 	}
 	
+	public void TableViewerSetInput(List<String> input) {
+		tableViewer.setInput(input);;
+	}
 	
 	@Override
 	protected void configureShell(Shell shell) {

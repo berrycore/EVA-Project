@@ -3,6 +3,7 @@ package berry.eva.core;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import berry.eva.application.MainApplication;
 import berry.eva.core.Status.Searching;
 import berry.eva.evaluation.Analyzer;
 
@@ -42,7 +43,7 @@ public class SearchEngine {
 
 	public void searchingStart() {
 		Status.setStatus(Searching.ON);
-		Thread crawler = new Thread(new Crawler(root, domain));
+		Thread crawler = new Thread(new Crawler( MainApplication.getInstance() ,root, domain));
 		crawler.start();
 		
 		Thread analyzer = new Thread(Analyzer.getInstance());

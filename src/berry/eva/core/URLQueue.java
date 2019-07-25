@@ -2,6 +2,7 @@ package berry.eva.core;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 public final class URLQueue {
@@ -53,4 +54,7 @@ public final class URLQueue {
 		return queue.peek();
 	}
 
+	public List<String> getList(){
+		return (List<String>) queue;
+	}
 }

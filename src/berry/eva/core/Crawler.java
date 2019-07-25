@@ -3,18 +3,23 @@ package berry.eva.core;
 import java.io.IOException;
 import java.util.HashSet;
 
+import org.eclipse.jface.viewers.TableViewer;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import berry.eva.application.MainApplication;
+
 public class Crawler implements Runnable {
 	
 	// member field
+	private MainApplication mainApp;
 	private String domain;
 	private String root;
 	
-	public Crawler(String root, String domain) {
+	public Crawler(MainApplication mainApp ,String root, String domain) {
+		this.mainApp = mainApp;
 		this.root = root;
 		this.domain = domain;
 	}
@@ -61,5 +66,6 @@ public class Crawler implements Runnable {
 		for(String url : links) {
 			URLQueue.getInstance().offer(url);	
 		}
+		//mainApp.TableViewerSetInput(URLQueue.getInstance().getList());
 	}
 }
