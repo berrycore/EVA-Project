@@ -4,6 +4,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -39,22 +40,32 @@ public final class MainApplication extends ApplicationWindow {
 		treeViewer.setContentProvider(new SiteTreeContentProvider());
 		treeViewer.setInput("root");
 		
-		Text text = new Text(sash_horizontal, SWT.FLAT);
-		text.setText("Main input!!");
+		TabFolder folder_start = new TabFolder(sash_horizontal, SWT.NONE);
+		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
+		tab_quick.setText("Start");
 		
-		TabFolder folder = new TabFolder(sash_vertical, SWT.NONE);
-		TabItem tab_spider = new TabItem(folder, SWT.NONE);
+		TabItem tab_request_response = new TabItem(folder_start, SWT.NONE);
+		tab_request_response.setText("Request & Response");
+		
+		
+		TabFolder folder_crawler = new TabFolder(sash_vertical, SWT.NONE);
+		TabItem tab_spider = new TabItem(folder_crawler, SWT.NONE);
 		tab_spider.setText("Spider");
 		
-		Text text_spider = new Text(folder, SWT.BOLD);
-		text_spider.setText("Table Here !!");
-		tab_spider.setControl(text_spider);
+//		Text text_spider = new Text(folder_crawler, SWT.BOLD);
+//		text_spider.setText("Table Here !!");
+//		tab_spider.setControl(text_spider);
+		TableViewer tableViewer = new TableViewer(folder_crawler);
+		tableViewer.setContentProvider(new SpiderContentProvider());
+		tableViewer.setLabelProvider(new SpiderLabelProvider());
+		
+		//tab_spider.setControl(control);
 		
 		
-		TabItem tab_scan = new TabItem(folder, SWT.NONE);
+		TabItem tab_scan = new TabItem(folder_crawler, SWT.NONE);
 		tab_scan.setText("Scan");
 		
-		Text text_scan = new Text(folder, SWT.ITALIC);
+		Text text_scan = new Text(folder_crawler, SWT.ITALIC);
 		text_scan.setText("Table HERE!!!");
 		tab_scan.setControl(text_scan);
 		
@@ -69,7 +80,7 @@ public final class MainApplication extends ApplicationWindow {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setSize(500, 400);
+		shell.setSize(700, 600);
 		shell.setText("EVA-Project");
 		
 	}
