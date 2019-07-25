@@ -7,11 +7,14 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.Text;
 
 public final class MainApplication extends ApplicationWindow {
 
@@ -24,19 +27,42 @@ public final class MainApplication extends ApplicationWindow {
 
 	@Override
 	protected Control createContents(Composite parent) {
-//		TODO : layout!!
-		Composite composite = new Composite(parent, SWT.NONE);
-		composite.setLayout(new GridLayout(1, false));
+			
+		SashForm sash_vertical = new SashForm(parent, SWT.VERTICAL);
+		SashForm sash_horizontal = new SashForm(sash_vertical, SWT.HORIZONTAL);
+		sash_vertical.setSashWidth(5);
+		sash_horizontal.setSashWidth(5);
 				
+		TreeViewer treeViewer = new TreeViewer(sash_horizontal);
+		treeViewer.getTree().setLayoutData(new GridData(GridData.FILL_VERTICAL));
+		treeViewer.setLabelProvider(new SiteTreeLabelProvider());
+		treeViewer.setContentProvider(new SiteTreeContentProvider());
+		treeViewer.setInput("root");
 		
-		TreeViewer tv = new TreeViewer(composite);
-		tv.getTree().setLayoutData(new GridData(GridData.FILL_BOTH));
-		tv.setLabelProvider(new SiteTreeLabelProvider());
-		tv.setContentProvider(new SiteTreeContentProvider());
-		tv.setInput("root");
+		Text text = new Text(sash_horizontal, SWT.FLAT);
+		text.setText("Main input!!");
+		
+		TabFolder folder = new TabFolder(sash_vertical, SWT.NONE);
+		TabItem tab_spider = new TabItem(folder, SWT.NONE);
+		tab_spider.setText("Spider");
+		
+		Text text_spider = new Text(folder, SWT.BOLD);
+		text_spider.setText("Table Here !!");
+		tab_spider.setControl(text_spider);
+		
+		
+		TabItem tab_scan = new TabItem(folder, SWT.NONE);
+		tab_scan.setText("Scan");
+		
+		Text text_scan = new Text(folder, SWT.ITALIC);
+		text_scan.setText("Table HERE!!!");
+		tab_scan.setControl(text_scan);
+		
+		sash_vertical.setWeights(new int[] {6,4});
+		sash_horizontal.setWeights(new int[] {2,8});
 		
 		setStatus("Status is ready!");
-		return composite;
+		return parent;
 	}
 	
 	
