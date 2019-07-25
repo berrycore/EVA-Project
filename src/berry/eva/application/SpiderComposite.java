@@ -8,6 +8,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 
 public class SpiderComposite extends Composite {
@@ -17,7 +18,8 @@ public class SpiderComposite extends Composite {
 	public SpiderComposite(Composite parent, int style) {
 		super(parent, style);
 		this.setLayout(new FillLayout());
-		tableViewer = new TableViewer(parent, SWT.BORDER | SWT.FULL_SELECTION);
+		final Table table = new Table(parent, SWT.FULL_SELECTION);
+		tableViewer = new TableViewer(table, SWT.BORDER | SWT.FULL_SELECTION);
 		TableLayout layout = new TableLayout();
 		layout.addColumnData(new ColumnWeightData(50,75, true));
 		tableViewer.getTable().setLayout(layout);
