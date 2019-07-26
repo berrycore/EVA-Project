@@ -27,9 +27,9 @@ public class StartComposite extends Composite {
 		label_start = new Label(this, SWT.NONE);
 		label_start.setText("Target : ");
 		
-		text_root = new Text(this, SWT.BORDER);
+		text_root = new Text(this, SWT.BORDER | SWT.SINGLE);
 		text_root.setLayoutData(new RowData(200, SWT.DEFAULT) );
-		
+		text_root.setText("http://127.0.0.1/");
 		
 		button_start = new Button(this, SWT.NONE);
 		button_start.setText("START");

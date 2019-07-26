@@ -1,14 +1,9 @@
 package berry.eva.application;
 
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
@@ -20,7 +15,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 public final class MainApplication extends ApplicationWindow {
@@ -28,7 +22,7 @@ public final class MainApplication extends ApplicationWindow {
 	public static MainApplication getInstance() {
 		return instance;
 	}
-	private TableViewer tableViewer;
+	
 	
 	public MainApplication() {
 		super(null);
@@ -69,12 +63,9 @@ public final class MainApplication extends ApplicationWindow {
 		TabItem tab_spider = new TabItem(folder_crawler, SWT.NONE);
 		tab_spider.setText("Spider");
 		
-		SpiderComposite spiderComposite = new SpiderComposite(folder_crawler, SWT.NULL);
+		SpiderComposite spiderComposite = new SpiderComposite(folder_crawler, SWT.NONE);
+		spiderComposite.setVisible(true);
 		tab_spider.setControl(spiderComposite);
-		
-//		Text text_spider = new Text(folder_crawler, SWT.BOLD);
-//		text_spider.setText("Table Here !!");
-//		tab_spider.setControl(text_spider);
 		
 		
 		TabItem tab_scan = new TabItem(folder_crawler, SWT.NONE);
@@ -91,9 +82,7 @@ public final class MainApplication extends ApplicationWindow {
 		return parent;
 	}
 	
-	public void TableViewerSetInput(List<String> input) {
-		tableViewer.setInput(input);;
-	}
+	
 	
 	@Override
 	protected void configureShell(Shell shell) {
