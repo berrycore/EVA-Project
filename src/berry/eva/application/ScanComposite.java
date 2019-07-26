@@ -11,12 +11,12 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 
-public class SpiderComposite extends Composite {
-
+public class ScanComposite extends Composite {
+	
 	Table table;
 	ProgressBar progressBar;
 
-	public SpiderComposite(Composite parent, int style) {
+	public ScanComposite(Composite parent, int style) {
 		super(parent, style);
 		// this.setLayout(new FillLayout(SWT.VERTICAL));
 		GridLayout gridLayout = new GridLayout();
@@ -33,7 +33,7 @@ public class SpiderComposite extends Composite {
 		composite.setLayout(new GridLayout());
 		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		table = new Table(composite, SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
+		final Table table = new Table(composite, SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
 		table.setHeaderVisible(true);
 
 		composite.setContent(table);
@@ -42,23 +42,22 @@ public class SpiderComposite extends Composite {
 		composite.setAlwaysShowScrollBars(true);
 		composite.setMinSize(table.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
-		// TableColumn setting
-		TableColumn column1 = new TableColumn(table, SWT.CENTER);
-		column1.setText("URI");
-		column1.setWidth(500);
-		
-		TableColumn column2 = new TableColumn(table, SWT.CENTER);
-		column2.setText("Flags");
-		column2.setWidth(80);
-		
-//		for (int col = 0; col < table.getColumnCount(); col++) {
-//			table.getColumn(col).pack();
-//		}
+		for (int col = 0; col < 4; col++) {
+			TableColumn column = new TableColumn(table, SWT.NONE);
+			column.setText("Column " + col);
+		}
 
-		TableItem item = new TableItem(table, SWT.NONE);
-		item.setText(0, "http://127.0.0.1:8188/dummy");
-		item.setText(1, "n");
-		
+		for (int col = 0; col < table.getColumnCount(); col++) {
+			table.getColumn(col).pack();
+		}
+
+		for (int row = 0; row < 20; row++) {
+			TableItem item = new TableItem(table, SWT.NONE);
+
+			for (int col = 0; col < table.getColumnCount(); col++) {
+				item.setText(col, "Item " + row + " " + col);
+			}
+		}
 	}
 
 	private void initProgressBar() {
@@ -67,13 +66,4 @@ public class SpiderComposite extends Composite {
 		progressBar = new ProgressBar(innerComposite, SWT.NONE);
 		progressBar.setBounds(new Rectangle(0, 0, 150, 15));
 	}
-	
-//	public void inputData(String url) {
-//		if(table != null) {
-//			TableItem item = new TableItem(table, SWT.NONE);
-//			item.setText(new String[] { url, "" });	
-//		}else {
-//			System.out.println("spider table is null !!!!!!!!!!!!!!!!!!!!!");
-//		}	
-//	}
 }

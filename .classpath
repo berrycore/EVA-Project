@@ -17,7 +17,7 @@
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.common_3.10.400.v20190516-1504.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.p2.core_2.6.0.v20190215-2242.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.equinox.registry_3.8.300.v20190218-2100.jar"/>
-	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.15.100.v20190222-1334.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jface_3.15.100.v20190222-1334.jar" sourcepath="C:/Program Files/Java/jdk1.8.0_211/src.zip"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.jface.text_3.15.100.v20190305-0811.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.osgi_3.13.300.v20190218-1622.jar"/>
 	<classpathentry kind="lib" path="lib/org.eclipse.swt.win32.win32.x86_64_3.110.0.v20190305-0602.jar"/>

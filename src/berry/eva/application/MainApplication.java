@@ -23,7 +23,22 @@ public final class MainApplication extends ApplicationWindow {
 		return instance;
 	}
 	
+	private StartComposite startComposite;
+	private SpiderComposite spiderComposite;
+	private ScanComposite scanComposite;
 	
+	public StartComposite getStartComposite() {
+		return startComposite;
+	}
+
+	public SpiderComposite getSpiderComposite() {
+		return spiderComposite;
+	}
+
+	public ScanComposite getScanComposite() {
+		return scanComposite;
+	}
+
 	public MainApplication() {
 		super(null);
 		this.addMenuBar();
@@ -51,8 +66,7 @@ public final class MainApplication extends ApplicationWindow {
 		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
 		tab_quick.setText("Start");
 		
-		StartComposite startComposite = new StartComposite(folder_start, SWT.NONE);
-		startComposite.setVisible(true);
+		startComposite = new StartComposite(this, folder_start, SWT.NONE);
 		tab_quick.setControl(startComposite);
 		
 		TabItem tab_request_response = new TabItem(folder_start, SWT.NONE);
@@ -63,17 +77,15 @@ public final class MainApplication extends ApplicationWindow {
 		TabItem tab_spider = new TabItem(folder_crawler, SWT.NONE);
 		tab_spider.setText("Spider");
 		
-		SpiderComposite spiderComposite = new SpiderComposite(folder_crawler, SWT.NONE);
-		spiderComposite.setVisible(true);
+		spiderComposite = new SpiderComposite(folder_crawler, SWT.NONE);
 		tab_spider.setControl(spiderComposite);
 		
 		
 		TabItem tab_scan = new TabItem(folder_crawler, SWT.NONE);
 		tab_scan.setText("Scan");
 		
-		Text text_scan = new Text(folder_crawler, SWT.ITALIC);
-		text_scan.setText("Table HERE!!!");
-		tab_scan.setControl(text_scan);
+		scanComposite = new ScanComposite(folder_crawler, SWT.NONE);
+		tab_scan.setControl(scanComposite);
 		
 		sash_vertical.setWeights(new int[] {6,4});
 		sash_horizontal.setWeights(new int[] {2,8});
