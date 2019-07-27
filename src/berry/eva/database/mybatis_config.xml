@@ -7,8 +7,8 @@
 		<environment id="oracle_env">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED">
-				<property name="username" value="hr"/>
-				<property name="password" value="hr"/>
+				<property name="username" value="evaproject"/>
+				<property name="password" value="evaproject"/>
 				<property name="driver" 
 					value="oracle.jdbc.driver.OracleDriver"/>
 				<property name="url" 
@@ -17,7 +17,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="jsh/myMapper.xml"/>
+		<mapper resource="berry/eva/database/myMapper.xml"/>
 	</mappers>
 </configuration>
 

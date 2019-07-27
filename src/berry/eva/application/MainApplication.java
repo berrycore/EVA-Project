@@ -1,5 +1,7 @@
 package berry.eva.application;
 
+import java.util.List;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -17,6 +19,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import berry.eva.database.CrudManager;
 import berry.eva.project.Project;
 import berry.eva.project.ProjectManager;
 
@@ -110,8 +113,7 @@ public final class MainApplication extends ApplicationWindow {
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
 		shell.setSize(900, 600);
-		shell.setText(Config.EVA_PROJECT);
-		
+		shell.setText(R.EVA_PROJECT);
 	}
 
 	
@@ -134,22 +136,14 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-//				String[] buttons = { IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL };
-//				MessageDialog dialog = new MessageDialog(getShell(), "Title", null, "New Project",
-//						MessageDialog.INFORMATION, buttons, 0);
 				ProjectManagerDialog dialog = new ProjectManagerDialog(getShell());
 				dialog.create();
 				if( dialog.open() == Window.OK ) {
 					String projectName = dialog.getProjectName();
 					Project project = new Project(projectName);
-					ProjectManager.getInstance().setProjec(project);
-					
-					
-					// TEST
-					String name = ProjectManager.getInstance().getProject().getName();
-					System.out.println(name);
-					
-					
+					ProjectManager.getInstance().add(project);
+					ProjectManager.getInstance().createNewTables(project);
+					getShell().setText(R.EVA_PROJECT + " : " + projectName);
 				}
 			}
 
@@ -168,6 +162,11 @@ public final class MainApplication extends ApplicationWindow {
 				MessageDialog dialog = new MessageDialog(getShell(), "Title", null, "File/Open selected!",
 						MessageDialog.INFORMATION, buttons, 0);
 				dialog.open();
+				
+				// TEST open project list from database;
+				CrudManager crud = new CrudManager();
+				List<Object> list = crud.select_projects_all();
+				System.out.println(list);
 			}
 
 			@Override

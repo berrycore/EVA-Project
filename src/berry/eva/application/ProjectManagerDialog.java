@@ -11,9 +11,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import berry.eva.project.Project;
-import berry.eva.project.ProjectManager;
-
 public class ProjectManagerDialog extends TitleAreaDialog {
 
 	private Text text_projectName;

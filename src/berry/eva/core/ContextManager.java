@@ -31,9 +31,4 @@ public class ContextManager {
 		return list_context.size();
 	}
 
-//	private static String getCurrentTime() {
-//		long time = System.currentTimeMillis();
-//		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-//		return dayTime.format(new Date(time));
-//	}
 }

@@ -1,4 +1,13 @@
-﻿CREATE USER evaproject IDENTIFIED BY ********;
+﻿------------------------------------------------------------------
+CREATE USER evaproject IDENTIFIED BY ********;
 GRANT CREATE table, CREATE session, CREATE view to evaproject;
 ALTER USER EVAPROJECT QUOTA 100M ON evaproject;  
 GRANT UNLIMITED TABLESPACE TO EVAPROJECT;
+------------------------------------------------------------------
+CREATE TABLE projects (
+projectname varchar2(50),
+createdtime varchar2(50)
+);
+
+------------------------------------------------------------------
+insert into projects (projectname, createdtime) values(#{projectname}, #{createdtime})

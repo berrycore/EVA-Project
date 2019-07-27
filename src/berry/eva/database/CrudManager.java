@@ -1,10 +1,6 @@
-package berry.eva.dbstore;
+package berry.eva.database;
 
 import java.io.InputStream;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -12,12 +8,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import berry.eva.database.dao.DAO_projects;
+
 public final class CrudManager {
 
-	private static final String NAME_SPACE = "jsh.myMapper";
+	private static final String NAME_SPACE = "berry.eva.database.myMapper";
 
 	private SqlSession getSession() {
-		String path_config = "jsh/mybatis_config.xml";
+		String path_config = "berry/eva/database/mybatis_config.xml";
 		InputStream is = null;
 		try {
 			is = Resources.getResourceAsStream(path_config);
@@ -30,6 +28,38 @@ public final class CrudManager {
 		return session;
 	}
 	
+	public List<Object> select_projects_all(){
+		SqlSession ss = getSession();
+		List<Object> list = null;
+		try {
+			String query = NAME_SPACE + ".select_projects_all";
+			list = ss.selectList(query);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ss.close();
+		}
+		return list;
+	}
+	
+	public Integer insert_project(DAO_projects dao) {
+		Integer resultCode = null;
+		SqlSession ss = getSession();
+		try {
+			String query = NAME_SPACE + ".insert_project";
+			resultCode = ss.insert(query, dao);	
+			if(resultCode == 1) {
+				ss.commit();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ss.close();
+		}
+		return resultCode;
+	}
+	
+	/**
 	public ArrayList<String> getColumnName(){
 		SqlSession ss = getSession();
 		ArrayList<String> list_columnName = null;
@@ -65,5 +95,5 @@ public final class CrudManager {
 		}
 		return list;
 	}
-	
+	*/
 }

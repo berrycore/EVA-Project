@@ -1,6 +1,6 @@
 package berry.eva.application;
 
-public class Config {
+public class R {
 
 	final public static String EVA_PROJECT = "EVA_PROJECT";
 	
