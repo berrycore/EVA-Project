@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.Text;
 
 public final class MainApplication extends ApplicationWindow {
 	private static MainApplication instance;
@@ -26,6 +25,8 @@ public final class MainApplication extends ApplicationWindow {
 	private StartComposite startComposite;
 	private SpiderComposite spiderComposite;
 	private ScanComposite scanComposite;
+	private TabFolder folder_start;
+	private TabFolder folder_crawler;
 	
 	public StartComposite getStartComposite() {
 		return startComposite;
@@ -45,6 +46,7 @@ public final class MainApplication extends ApplicationWindow {
 		this.addStatusLine();
 		instance = this;
 	}
+	
 
 	@Override
 	protected Control createContents(Composite parent) {
@@ -62,7 +64,7 @@ public final class MainApplication extends ApplicationWindow {
 		treeViewer.setContentProvider(new SiteTreeContentProvider());
 		treeViewer.setInput("root");
 		
-		TabFolder folder_start = new TabFolder(sash_horizontal, SWT.NONE);
+		folder_start = new TabFolder(sash_horizontal, SWT.NONE);
 		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
 		tab_quick.setText("Start");
 		
@@ -73,7 +75,7 @@ public final class MainApplication extends ApplicationWindow {
 		tab_request_response.setText("Request & Response");
 		
 		
-		TabFolder folder_crawler = new TabFolder(sash_vertical, SWT.NONE);
+		folder_crawler = new TabFolder(sash_vertical, SWT.NONE);
 		TabItem tab_spider = new TabItem(folder_crawler, SWT.NONE);
 		tab_spider.setText("Spider");
 		
@@ -87,7 +89,7 @@ public final class MainApplication extends ApplicationWindow {
 		scanComposite = new ScanComposite(folder_crawler, SWT.NONE);
 		tab_scan.setControl(scanComposite);
 		
-		sash_vertical.setWeights(new int[] {6,4});
+		sash_vertical.setWeights(new int[] {5,5});
 		sash_horizontal.setWeights(new int[] {2,8});
 		
 		setStatus("Status is ready!");

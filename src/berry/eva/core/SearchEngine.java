@@ -46,7 +46,6 @@ public class SearchEngine {
 		Thread crawler = new Thread(new Crawler( MainApplication.getInstance() ,root, domain));
 		crawler.start();
 		
-		Thread analyzer = new Thread(Analyzer.getInstance());
-		analyzer.start();
+
 	}
 }

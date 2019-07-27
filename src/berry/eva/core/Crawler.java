@@ -3,7 +3,8 @@ package berry.eva.core;
 import java.io.IOException;
 import java.util.HashSet;
 
-import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.TableItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,8 +65,23 @@ public class Crawler implements Runnable {
 	public void run() {
 		getPageLinks(root);
 		for(String url : links) {
-			URLQueue.getInstance().offer(url);	
+			URLQueue.getInstance().offer(url);
+			
+			Thread thread = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					mainApp.getShell().getDisplay().asyncExec(new Runnable() {
+			            public void run() {
+			                if (mainApp.getSpiderComposite().getTable().isDisposed())
+			                  return;
+			                TableItem item = new TableItem(mainApp.getSpiderComposite().getTable(), SWT.NONE);
+			                item.setText(url);
+			              }
+			            });
+				}
+			});
+			thread.start();
 		}
-		//mainApp.TableViewerSetInput(URLQueue.getInstance().getList());
 	}
 }

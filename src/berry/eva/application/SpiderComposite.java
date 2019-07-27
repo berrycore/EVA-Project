@@ -13,8 +13,9 @@ import org.eclipse.swt.widgets.TableItem;
 
 public class SpiderComposite extends Composite {
 
-	Table table;
-	ProgressBar progressBar;
+	private Table table;
+	private ProgressBar progressBar;
+	
 
 	public SpiderComposite(Composite parent, int style) {
 		super(parent, style);
@@ -23,11 +24,15 @@ public class SpiderComposite extends Composite {
 		gridLayout.numColumns = 1;
 		this.setLayout(gridLayout);
 
+		
 		initProgressBar();
 		initTable();
-
 	}
 
+	public Table getTable() {
+		return this.table;
+	}
+	
 	private void initTable() {
 		final ScrolledComposite composite = new ScrolledComposite(this, SWT.NONE);
 		composite.setLayout(new GridLayout());
@@ -44,20 +49,20 @@ public class SpiderComposite extends Composite {
 
 		// TableColumn setting
 		TableColumn column1 = new TableColumn(table, SWT.CENTER);
-		column1.setText("URI");
-		column1.setWidth(500);
+		column1.setText("URL");
+		column1.setWidth(400);
 		
 		TableColumn column2 = new TableColumn(table, SWT.CENTER);
 		column2.setText("Flags");
 		column2.setWidth(80);
 		
-//		for (int col = 0; col < table.getColumnCount(); col++) {
-//			table.getColumn(col).pack();
-//		}
-
-		TableItem item = new TableItem(table, SWT.NONE);
-		item.setText(0, "http://127.0.0.1:8188/dummy");
-		item.setText(1, "n");
+////		for (int col = 0; col < table.getColumnCount(); col++) {
+////			table.getColumn(col).pack();
+////		}
+//
+//		TableItem item = new TableItem(table, SWT.NONE);
+//		item.setText(0, "http://127.0.0.1:8188/dummy");
+//		item.setText(1, "n");
 		
 	}
 
@@ -67,13 +72,4 @@ public class SpiderComposite extends Composite {
 		progressBar = new ProgressBar(innerComposite, SWT.NONE);
 		progressBar.setBounds(new Rectangle(0, 0, 150, 15));
 	}
-	
-//	public void inputData(String url) {
-//		if(table != null) {
-//			TableItem item = new TableItem(table, SWT.NONE);
-//			item.setText(new String[] { url, "" });	
-//		}else {
-//			System.out.println("spider table is null !!!!!!!!!!!!!!!!!!!!!");
-//		}	
-//	}
 }

@@ -3,6 +3,8 @@ package berry.eva.evaluation;
 import java.util.LinkedList;
 import java.util.List;
 
+import berry.eva.core.SearchEngine;
+import berry.eva.core.Status;
 import berry.eva.core.URLQueue;
 import berry.eva.evaluation.scan.HTTPMethodScan;
 
@@ -36,8 +38,8 @@ public final class Analyzer implements Runnable{
 	@Override
 	public void run() {
 
-		while(true) {
-			
+		//while(Status.isSearching()) {
+		while((URLQueue.getInstance().isEmpty() == false) && (Status.isSearching())) {	 
 			System.out.println("Analyzer is waiting...");
 			//System.out.println("URLQueue.getInstance().poll() -> " + URLQueue.getInstance().poll());
 			String url = URLQueue.getInstance().poll();

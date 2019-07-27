@@ -8,7 +8,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
 import berry.eva.core.SearchEngine;
@@ -41,23 +40,9 @@ public class StartComposite extends Composite {
 			@Override
 			public void handleEvent(Event arg0) {
 				System.out.println(text_root.getText());
-				//SearchEngine.getInstance().setUp("http://192.168.0.8/dvwa/setup.php").searchingStart();
+				SearchEngine.getInstance().setUp("http://192.168.0.8/dvwa/setup.php").searchingStart();
 				
-				Thread thread = new Thread(new Runnable() {
-					
-					@Override
-					public void run() {
-						getDisplay().asyncExec(new Runnable() {
-				            public void run() {
-				                if (mainApp.getSpiderComposite().table.isDisposed())
-				                  return;
-				                TableItem item = new TableItem(mainApp.getSpiderComposite().table, SWT.NONE);
-				                item.setText(text_root.getText());
-				              }
-				            });
-					}
-				});
-				thread.start();
+
 			}
 		});
 	}
