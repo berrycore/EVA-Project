@@ -23,6 +23,7 @@ public final class MainApplication extends ApplicationWindow {
 	}
 	
 	private StartComposite startComposite;
+	private ReqRespComposite reqRespComposite;
 	private SpiderComposite spiderComposite;
 	private ScanComposite scanComposite;
 	private TabFolder folder_start;
@@ -73,6 +74,9 @@ public final class MainApplication extends ApplicationWindow {
 		
 		TabItem tab_request_response = new TabItem(folder_start, SWT.NONE);
 		tab_request_response.setText("Request & Response");
+		
+		reqRespComposite = new ReqRespComposite(folder_start, SWT.NONE);
+		tab_request_response.setControl(reqRespComposite);
 		
 		
 		folder_crawler = new TabFolder(sash_vertical, SWT.NONE);
