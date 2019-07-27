@@ -6,6 +6,7 @@ public final class Context {
 	private String method;
 	private String Req_Timestamp;
 	private String Req_Header;
+	private String Req_Body;
 	private String Resp_Timestamp;
 	private String Resp_Code;
 	private String Resp_Reason;
@@ -16,99 +17,107 @@ public final class Context {
 
 	}
 
-	public Context(Integer id, String uRL, String method, String req_Timestamp, String req_Header,
-			String resp_Timestamp, String resp_Code, String resp_Reason, String resp_Body, String cWE_ID) {
-		super();
+	public Context setId(Integer id) {
 		this.id = id;
+		return this;
+	}
+
+	public Context setURL(String uRL) {
 		URL = uRL;
+		return this;
+	}
+
+	public Context setMethod(String method) {
 		this.method = method;
+		return this;
+	}
+
+	public Context setReq_Timestamp(String req_Timestamp) {
 		Req_Timestamp = req_Timestamp;
+		return this;
+	}
+
+	public Context setReq_Header(String req_Header) {
 		Req_Header = req_Header;
+		return this;
+	}
+
+	public Context setReq_Body(String req_Body) {
+		Req_Body = req_Body;
+		return this;
+	}
+
+	public Context setResp_Timestamp(String resp_Timestamp) {
 		Resp_Timestamp = resp_Timestamp;
+		return this;
+	}
+
+	public Context setResp_Code(String resp_Code) {
 		Resp_Code = resp_Code;
+		return this;
+	}
+
+	public Context setResp_Reason(String resp_Reason) {
 		Resp_Reason = resp_Reason;
+		return this;
+	}
+
+	public Context setResp_Body(String resp_Body) {
 		Resp_Body = resp_Body;
+		return this;
+	}
+
+	public Context setCWE_ID(String cWE_ID) {
 		CWE_ID = cWE_ID;
+		return this;
+	}
+
+	public Context build() {
+		return this;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
 	public String getURL() {
 		return URL;
-	}
-
-	public void setURL(String uRL) {
-		URL = uRL;
 	}
 
 	public String getMethod() {
 		return method;
 	}
 
-	public void setMethod(String method) {
-		this.method = method;
-	}
-
 	public String getReq_Timestamp() {
 		return Req_Timestamp;
-	}
-
-	public void setReq_Timestamp(String req_Timestamp) {
-		Req_Timestamp = req_Timestamp;
 	}
 
 	public String getReq_Header() {
 		return Req_Header;
 	}
 
-	public void setReq_Header(String req_Header) {
-		Req_Header = req_Header;
+	public String getReq_Body() {
+		return Req_Body;
 	}
 
 	public String getResp_Timestamp() {
 		return Resp_Timestamp;
 	}
 
-	public void setResp_Timestamp(String resp_Timestamp) {
-		Resp_Timestamp = resp_Timestamp;
-	}
-
 	public String getResp_Code() {
 		return Resp_Code;
-	}
-
-	public void setResp_Code(String resp_Code) {
-		Resp_Code = resp_Code;
 	}
 
 	public String getResp_Reason() {
 		return Resp_Reason;
 	}
 
-	public void setResp_Reason(String resp_Reason) {
-		Resp_Reason = resp_Reason;
-	}
-
 	public String getResp_Body() {
 		return Resp_Body;
 	}
 
-	public void setResp_Body(String resp_Body) {
-		Resp_Body = resp_Body;
-	}
-
 	public String getCWE_ID() {
 		return CWE_ID;
-	}
-
-	public void setCWE_ID(String cWE_ID) {
-		CWE_ID = cWE_ID;
 	}
 
 	@Override
@@ -116,6 +125,7 @@ public final class Context {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((CWE_ID == null) ? 0 : CWE_ID.hashCode());
+		result = prime * result + ((Req_Body == null) ? 0 : Req_Body.hashCode());
 		result = prime * result + ((Req_Header == null) ? 0 : Req_Header.hashCode());
 		result = prime * result + ((Req_Timestamp == null) ? 0 : Req_Timestamp.hashCode());
 		result = prime * result + ((Resp_Body == null) ? 0 : Resp_Body.hashCode());
@@ -141,6 +151,11 @@ public final class Context {
 			if (other.CWE_ID != null)
 				return false;
 		} else if (!CWE_ID.equals(other.CWE_ID))
+			return false;
+		if (Req_Body == null) {
+			if (other.Req_Body != null)
+				return false;
+		} else if (!Req_Body.equals(other.Req_Body))
 			return false;
 		if (Req_Header == null) {
 			if (other.Req_Header != null)
@@ -193,8 +208,9 @@ public final class Context {
 	@Override
 	public String toString() {
 		return "Context [id=" + id + ", URL=" + URL + ", method=" + method + ", Req_Timestamp=" + Req_Timestamp
-				+ ", Req_Header=" + Req_Header + ", Resp_Timestamp=" + Resp_Timestamp + ", Resp_Code=" + Resp_Code
-				+ ", Resp_Reason=" + Resp_Reason + ", Resp_Body=" + Resp_Body + ", CWE_ID=" + CWE_ID + "]";
+				+ ", Req_Header=" + Req_Header + ", Req_Body=" + Req_Body + ", Resp_Timestamp=" + Resp_Timestamp
+				+ ", Resp_Code=" + Resp_Code + ", Resp_Reason=" + Resp_Reason + ", Resp_Body=" + Resp_Body + ", CWE_ID="
+				+ CWE_ID + "]";
 	}
 
 }

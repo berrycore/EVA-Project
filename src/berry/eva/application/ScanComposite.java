@@ -17,10 +17,10 @@ import berry.eva.evaluation.Analyzer;
 
 public class ScanComposite extends Composite {
 	
-	Table table;
-	ProgressBar progressBar;
-	Button button_selectPolicy;
-	Button button_startScan;
+	private Table table;
+	private ProgressBar progressBar;
+	private Button button_selectPolicy;
+	private Button button_startScan;
 
 	public ScanComposite(Composite parent, int style) {
 		super(parent, style);
@@ -45,26 +45,26 @@ public class ScanComposite extends Composite {
 		composite.setExpandHorizontal(true);
 		composite.setExpandVertical(true);
 		composite.setAlwaysShowScrollBars(true);
-		composite.setMinSize(table.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+		//composite.setMinSize(table.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 
 		TableColumn column_id = new TableColumn(table, SWT.CENTER);
 		column_id.setText("id");
 		column_id.setWidth(40);
 		
-		TableColumn column_url = new TableColumn(table, SWT.CENTER);
+		TableColumn column_url = new TableColumn(table, SWT.LEFT );
 		column_url.setText("URL");
-		column_url.setWidth(800);
+		column_url.setWidth(400);
 		
 		TableColumn column_method = new TableColumn(table, SWT.CENTER);
 		column_method.setText("Method");
-		column_url.setWidth(50);
+		column_method.setWidth(60);
 		
 		TableColumn column_Req_Timestamp = new TableColumn(table, SWT.CENTER);
-		column_Req_Timestamp.setText("Req_Timestamp");
+		column_Req_Timestamp.setText("ReqTime");
 		column_Req_Timestamp.setWidth(70);
 		
 		TableColumn column_Resp_Timestamp = new TableColumn(table, SWT.CENTER);
-		column_Resp_Timestamp.setText("Resp_Timestamp");
+		column_Resp_Timestamp.setText("RespTime");
 		column_Resp_Timestamp.setWidth(70);
 		
 		TableColumn column_Resp_code = new TableColumn(table, SWT.CENTER);
@@ -101,5 +101,9 @@ public class ScanComposite extends Composite {
 				analyzer.start();
 			}
 		});
+	}
+	
+	public Table getTable() {
+		return this.table;
 	}
 }

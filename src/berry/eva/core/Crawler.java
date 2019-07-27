@@ -13,20 +13,19 @@ import org.jsoup.select.Elements;
 import berry.eva.application.MainApplication;
 
 public class Crawler implements Runnable {
-	
+
 	// member field
 	private MainApplication mainApp;
 	private String domain;
 	private String root;
-	
-	public Crawler(MainApplication mainApp ,String root, String domain) {
+
+	public Crawler(MainApplication mainApp, String root, String domain) {
 		this.mainApp = mainApp;
 		this.root = root;
 		this.domain = domain;
 	}
-	
+
 	private HashSet<String> links = new HashSet<String>();
-	
 
 	private void getPageLinks(String URL) {
 		// 4. Check if you have already crawled the URLs
@@ -64,24 +63,18 @@ public class Crawler implements Runnable {
 	@Override
 	public void run() {
 		getPageLinks(root);
-		for(String url : links) {
+		for (String url : links) {
 			URLQueue.getInstance().offer(url);
-			
-			Thread thread = new Thread(new Runnable() {
-				
-				@Override
+
+			mainApp.getShell().getDisplay().asyncExec(new Runnable() {
 				public void run() {
-					mainApp.getShell().getDisplay().asyncExec(new Runnable() {
-			            public void run() {
-			                if (mainApp.getSpiderComposite().getTable().isDisposed())
-			                  return;
-			                TableItem item = new TableItem(mainApp.getSpiderComposite().getTable(), SWT.NONE);
-			                item.setText(url);
-			              }
-			            });
+					if (mainApp.getSpiderComposite().getTable().isDisposed())
+						return;
+					TableItem item = new TableItem(mainApp.getSpiderComposite().getTable(), SWT.NONE);
+					item.setText(url);
 				}
 			});
-			thread.start();
 		}
+
 	}
 }
