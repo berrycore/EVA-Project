@@ -1,42 +1,39 @@
 package berry.eva.core;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-
-import berry.eva.project.Project;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class ContextManager {
 	
-	private Project project;
-	private List<Context> list_context;
-
-	public ContextManager(Project project) {
-		this.project = project;
-		list_context = new LinkedList<Context>();
+	private static ContextManager instance = new ContextManager();
+	public static ContextManager getInstance() {
+		return instance;
 	}
 
-	public boolean add(Context context) {
-		return list_context.add(context);
+	private Map<Integer, Context> map = new HashMap<Integer, Context>();
+
+	private ContextManager() {
+		
 	}
 
-	public Context get(int index) {
-		return list_context.get(index);
+	public void put(Integer key, Context context) {
+		map.put(key, context);
 	}
 
-	public boolean isEmpty() {
-		return list_context.isEmpty();
+	public Context get(Integer key) {
+		return map.get(key);
 	}
 
-	public Iterator<Context> iterator() {
-		return list_context.iterator();
+	public Set<Integer> keySet(){
+		return map.keySet();
 	}
 
-	public int size() {
-		return list_context.size();
+	public boolean containsKey(Integer key){
+		return map.containsKey(key);
 	}
 	
-	public Project getProject() {
-		return project;
+	public boolean containsValue(Context context) {
+		return map.containsValue(context);
 	}
 }

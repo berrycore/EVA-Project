@@ -8,6 +8,7 @@ import org.eclipse.swt.widgets.TableItem;
 
 import berry.eva.application.MainApplication;
 import berry.eva.core.Context;
+import berry.eva.core.ContextManager;
 import berry.eva.core.Status;
 import berry.eva.core.URLQueue;
 import berry.eva.policy.PolicyManager;
@@ -41,6 +42,7 @@ public final class Analyzer implements Runnable {
 				@Override
 				public void run() {
 					Table scanTable = mainApp.getScanComposite().getTable();
+					
 					int itemsLength = scanTable.getItems().length + 1;
 					TableItem item = new TableItem(scanTable, SWT.NONE);
 					item.setText(0, String.valueOf(itemsLength));
@@ -53,6 +55,15 @@ public final class Analyzer implements Runnable {
 					item.setText(7, context.getIsVulnerable() + "");
 					item.setText(8, context.getCWE_ID());
 					
+					String req_body = context.getReq_Body() == null ? "" : context.getReq_Body();
+					String resp_body = context.getResp_Body() == null ? "" : context.getResp_Body();
+					
+					item.setText(9, context.getReq_Header().toString());
+					item.setText(10, req_body);
+					item.setText(11, context.getResp_Headers().toString());
+					item.setText(12, resp_body);
+					
+					ContextManager.getInstance().put(itemsLength, context);
 					// 0 : id
 					// 1 : url
 					// 2 : method

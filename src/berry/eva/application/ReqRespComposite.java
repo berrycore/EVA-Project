@@ -19,7 +19,6 @@ public class ReqRespComposite extends Composite {
 		this.setLayout(new FillLayout());
 		initTextArea();
 	}
-	 
 
 	private void initTextArea() {
 		
@@ -54,5 +53,22 @@ public class ReqRespComposite extends Composite {
 		sashForm_request.setWeights(new int[] {4,6});
 		sashForm_response.setWeights(new int[] {4,6});
 	}
+
+	public Text getText_request_header() {
+		return text_request_header;
+	}
+
+	public Text getText_request_body() {
+		return text_request_body;
+	}
+
+	public Text getText_response_header() {
+		return text_response_header;
+	}
+
+	public Text getText_response_body() {
+		return text_response_body;
+	}
+	
 	
 }

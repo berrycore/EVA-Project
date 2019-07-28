@@ -12,8 +12,12 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 
+import berry.eva.core.Context;
+import berry.eva.core.ContextManager;
 import berry.eva.evaluation.Analyzer;
+import berry.eva.util.TextConverter;
 
 public class ScanComposite extends Composite {
 	
@@ -83,6 +87,24 @@ public class ScanComposite extends Composite {
 		column_cwe_id.setText("CWE_ID");
 		column_cwe_id.setWidth(80);
 
+		
+		table.addListener(SWT.Selection, new Listener() {
+			
+			@Override
+			public void handleEvent(Event event) {
+				
+				
+				Integer key = table.getSelectionIndex()+1;
+				Context context = ContextManager.getInstance().get(key);
+				
+				MainApplication mainApp = MainApplication.getInstance();
+				mainApp.getReqRespComposite().getText_request_header().setText(TextConverter.MapToString(context.getReq_Header()));
+				mainApp.getReqRespComposite().getText_request_body().setText(context.getReq_Body());
+				mainApp.getReqRespComposite().getText_response_header().setText(TextConverter.MapToString(context.getResp_Headers()));
+				mainApp.getReqRespComposite().getText_response_body().setText(context.getResp_Body());
+				
+			}
+		});
 	}
 
 	private void initProgressBar() {

@@ -1,7 +1,6 @@
 package berry.eva.core;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public final class Context {
@@ -13,7 +12,7 @@ public final class Context {
 	private String Req_Body;
 	private String Resp_Timestamp;
 	private String Resp_Code;
-	private Map<String, List<String>> Resp_Headers = new HashMap<String, List<String>>();
+	private Map<String, String> Resp_Headers = new HashMap<String, String>();
 	private String Resp_Reason;
 	private String Resp_Body;
 	private String CWE_ID;
@@ -44,7 +43,7 @@ public final class Context {
 	}
 
 	public Context setReq_Header(Map<String, String> req_Header) {
-		req_Header.putAll(Req_Header);
+		this.Req_Header = req_Header;
 		return this;
 	}
 
@@ -78,8 +77,8 @@ public final class Context {
 		return this;
 	}
 	
-	public Context setResp_Headers(Map<String, List<String>> resp_Headers) {
-		resp_Headers.putAll(Resp_Headers);
+	public Context setResp_Headers(Map<String, String> resp_Headers) {
+		this.Resp_Headers = resp_Headers;
 		return this;
 	}
 	
@@ -136,11 +135,115 @@ public final class Context {
 		return CWE_ID;
 	}
 
-	public Map<String, List<String>> getResp_Headers(){
+	public Map<String, String> getResp_Headers(){
 		return this.Resp_Headers;
 	}
 
 	public boolean getIsVulnerable() {
 		return isVulnerable;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((CWE_ID == null) ? 0 : CWE_ID.hashCode());
+		result = prime * result + ((Req_Body == null) ? 0 : Req_Body.hashCode());
+		result = prime * result + ((Req_Header == null) ? 0 : Req_Header.hashCode());
+		result = prime * result + ((Req_Timestamp == null) ? 0 : Req_Timestamp.hashCode());
+		result = prime * result + ((Resp_Body == null) ? 0 : Resp_Body.hashCode());
+		result = prime * result + ((Resp_Code == null) ? 0 : Resp_Code.hashCode());
+		result = prime * result + ((Resp_Headers == null) ? 0 : Resp_Headers.hashCode());
+		result = prime * result + ((Resp_Reason == null) ? 0 : Resp_Reason.hashCode());
+		result = prime * result + ((Resp_Timestamp == null) ? 0 : Resp_Timestamp.hashCode());
+		result = prime * result + ((URL == null) ? 0 : URL.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + (isVulnerable ? 1231 : 1237);
+		result = prime * result + ((method == null) ? 0 : method.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Context other = (Context) obj;
+		if (CWE_ID == null) {
+			if (other.CWE_ID != null)
+				return false;
+		} else if (!CWE_ID.equals(other.CWE_ID))
+			return false;
+		if (Req_Body == null) {
+			if (other.Req_Body != null)
+				return false;
+		} else if (!Req_Body.equals(other.Req_Body))
+			return false;
+		if (Req_Header == null) {
+			if (other.Req_Header != null)
+				return false;
+		} else if (!Req_Header.equals(other.Req_Header))
+			return false;
+		if (Req_Timestamp == null) {
+			if (other.Req_Timestamp != null)
+				return false;
+		} else if (!Req_Timestamp.equals(other.Req_Timestamp))
+			return false;
+		if (Resp_Body == null) {
+			if (other.Resp_Body != null)
+				return false;
+		} else if (!Resp_Body.equals(other.Resp_Body))
+			return false;
+		if (Resp_Code == null) {
+			if (other.Resp_Code != null)
+				return false;
+		} else if (!Resp_Code.equals(other.Resp_Code))
+			return false;
+		if (Resp_Headers == null) {
+			if (other.Resp_Headers != null)
+				return false;
+		} else if (!Resp_Headers.equals(other.Resp_Headers))
+			return false;
+		if (Resp_Reason == null) {
+			if (other.Resp_Reason != null)
+				return false;
+		} else if (!Resp_Reason.equals(other.Resp_Reason))
+			return false;
+		if (Resp_Timestamp == null) {
+			if (other.Resp_Timestamp != null)
+				return false;
+		} else if (!Resp_Timestamp.equals(other.Resp_Timestamp))
+			return false;
+		if (URL == null) {
+			if (other.URL != null)
+				return false;
+		} else if (!URL.equals(other.URL))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (isVulnerable != other.isVulnerable)
+			return false;
+		if (method == null) {
+			if (other.method != null)
+				return false;
+		} else if (!method.equals(other.method))
+			return false;
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Context [id=" + id + ", URL=" + URL + ", method=" + method + ", Req_Timestamp=" + Req_Timestamp
+				+ ", Req_Header=" + Req_Header + ", Req_Body=" + Req_Body + ", Resp_Timestamp=" + Resp_Timestamp
+				+ ", Resp_Code=" + Resp_Code + ", Resp_Headers=" + Resp_Headers + ", Resp_Reason=" + Resp_Reason
+				+ ", Resp_Body=" + Resp_Body + ", CWE_ID=" + CWE_ID + ", isVulnerable=" + isVulnerable + "]";
+	}
+
+	
 }

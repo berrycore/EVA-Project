@@ -47,6 +47,10 @@ public final class MainApplication extends ApplicationWindow {
 	public ScanComposite getScanComposite() {
 		return scanComposite;
 	}
+	
+	public ReqRespComposite getReqRespComposite() {
+		return reqRespComposite;
+	}
 
 	public MainApplication() {
 		super(null);
