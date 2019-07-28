@@ -53,7 +53,7 @@ public class ScanComposite extends Composite {
 		
 		TableColumn column_url = new TableColumn(table, SWT.LEFT );
 		column_url.setText("URL");
-		column_url.setWidth(400);
+		column_url.setWidth(450);
 		
 		TableColumn column_method = new TableColumn(table, SWT.CENTER);
 		column_method.setText("Method");
@@ -61,11 +61,11 @@ public class ScanComposite extends Composite {
 		
 		TableColumn column_Req_Timestamp = new TableColumn(table, SWT.CENTER);
 		column_Req_Timestamp.setText("ReqTime");
-		column_Req_Timestamp.setWidth(70);
+		column_Req_Timestamp.setWidth(145);
 		
 		TableColumn column_Resp_Timestamp = new TableColumn(table, SWT.CENTER);
 		column_Resp_Timestamp.setText("RespTime");
-		column_Resp_Timestamp.setWidth(70);
+		column_Resp_Timestamp.setWidth(145);
 		
 		TableColumn column_Resp_code = new TableColumn(table, SWT.CENTER);
 		column_Resp_code.setText("Resp_Code");
@@ -73,11 +73,15 @@ public class ScanComposite extends Composite {
 		
 		TableColumn column_Resp_reason = new TableColumn(table, SWT.CENTER);
 		column_Resp_reason.setText("reason");
-		column_Resp_reason.setWidth(80);
+		column_Resp_reason.setWidth(60);
 		
 		TableColumn column_isVulnerable = new TableColumn(table, SWT.CENTER);
 		column_isVulnerable.setText("isVulnerable");
 		column_isVulnerable.setWidth(50);
+		
+		TableColumn column_cwe_id = new TableColumn(table, SWT.CENTER);
+		column_cwe_id.setText("CWE_ID");
+		column_cwe_id.setWidth(80);
 
 	}
 

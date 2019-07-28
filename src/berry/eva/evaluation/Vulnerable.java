@@ -1,6 +1,8 @@
 package berry.eva.evaluation;
 
+import berry.eva.core.Context;
+
 public interface Vulnerable {
 
-	Result execute(String url);
+	Context execute(String url);
 }

@@ -4,10 +4,15 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+import berry.eva.project.Project;
+
 public class ContextManager {
+	
+	private Project project;
 	private List<Context> list_context;
 
-	private ContextManager() {
+	public ContextManager(Project project) {
+		this.project = project;
 		list_context = new LinkedList<Context>();
 	}
 
@@ -30,5 +35,8 @@ public class ContextManager {
 	public int size() {
 		return list_context.size();
 	}
-
+	
+	public Project getProject() {
+		return project;
+	}
 }

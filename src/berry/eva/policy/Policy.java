@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import berry.eva.evaluation.Weakness;
+import berry.eva.evaluation.Vulnerable;
 
 public class Policy {
 
 	private String name;
-	private List<Weakness> list_weakness;
+	private List<Vulnerable> list_vulnerable;
 	
 	public Policy(String name) {
 		this.name = name;
-		this.list_weakness = new ArrayList<Weakness>();
+		this.list_vulnerable = new ArrayList<Vulnerable>();
 	}
 	
-	public Iterator<Weakness> iterator(){
+	public Iterator<Vulnerable> iterator(){
 		return this.iterator();
 	}
 	
@@ -24,15 +24,19 @@ public class Policy {
 		return this.name;
 	}
 	
-	public boolean add(Weakness weakness) {
-		return this.list_weakness.add(weakness);
+	public boolean add(Vulnerable vulnerable) {
+		return this.list_vulnerable.add(vulnerable);
 	}
 	
 	public boolean isEmpty() {
-		return this.list_weakness.isEmpty();
+		return this.list_vulnerable.isEmpty();
 	}
 	
-	public Weakness get(int index) {
-		return this.list_weakness.get(index);
+	public Vulnerable get(int index) {
+		return this.list_vulnerable.get(index);
+	}
+	
+	public List<Vulnerable> getList(){
+		return this.list_vulnerable;
 	}
 }

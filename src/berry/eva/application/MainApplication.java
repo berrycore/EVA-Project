@@ -112,7 +112,7 @@ public final class MainApplication extends ApplicationWindow {
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);
-		shell.setSize(900, 600);
+		shell.setSize(1200, 600);
 		shell.setText(R.EVA_PROJECT);
 	}
 

@@ -37,6 +37,7 @@ public class WeaknessEnumeration {
 		Weakness CWE_613 = new Weakness(Category.BrokenAuthentication, "CWE_613", "Insufficient Session Expiration", "According to WASC, Insufficient Session Expiration is when a web site permits an attacker to reuse old session credentials or session IDs for authorization.");
 		Weakness CWE_620 = new Weakness(Category.BrokenAuthentication, "CWE_620", "Unverified Password Change", "When setting a new password for a user, the product does not require knowledge of the original password, or using another form of authentication.");
 		Weakness CWE_640 = new Weakness(Category.BrokenAuthentication, "CWE_640", "Weak Password Recovery Mechanism for Forgotten Password", "The software contains a mechanism for users to recover or change their passwords without knowing the original password, but the mechanism is weak.");
+		 
 		
 		Weakness CWE_220 = new Weakness(Category.SensitiveDataExposure, "CWE_220", "Sensitive Data Under FTP Root", "The application stores sensitive data under the FTP document root with insufficient access control, which might make it accessible to untrusted parties.");
 		Weakness CWE_295 = new Weakness(Category.SensitiveDataExposure, "CWE_295", "Improper Certificate Validation", "The software does not validate, or incorrectly validates, a certificate.");
@@ -60,6 +61,7 @@ public class WeaknessEnumeration {
 		
 		Weakness CWE_209 = new Weakness(Category.SecurityMisconfiguration, "CWE_209", "Information Exposure Through an Error Message", "The software generates an error message that includes sensitive information about its environment, users, or associated data.");
 		Weakness CWE_548 = new Weakness(Category.SecurityMisconfiguration, "CWE_549", "Information Exposure Through Directory Listing", "A directory listing is inappropriately exposed, yielding potentially sensitive information to attackers.");
+		Weakness CWE_650 = new Weakness(Category.SecurityMisconfiguration, "CWE_650", "Trusting HTTP Permission Methods on the Server Side", "The server contains a protection mechanism that assumes that any URI that is accessed using HTTP GET will not cause a state change to the associated resource. This might allow attackers to bypass intended access restrictions and conduct resource modification and deletion attacks, since some applications allow GET to modify state.");
 		
 		Weakness CWE_79 = new Weakness(Category.XSS, "CWE_79", "Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')", "The software does not neutralize or incorrectly neutralizes user-controllable input before it is placed in output that is used as a web page that is served to other users.");
 		
@@ -105,6 +107,7 @@ public class WeaknessEnumeration {
 		map.put("CWE_639", CWE_639);
 		map.put("CWE_209", CWE_209);
 		map.put("CWE_548", CWE_548);
+		map.put("CWE_650", CWE_650);
 		map.put("CWE_79", CWE_79);
 		map.put("CWE_502", CWE_502);
 		map.put("CWE_223", CWE_223);
