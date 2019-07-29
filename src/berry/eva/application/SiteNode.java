@@ -32,4 +32,8 @@ public class SiteNode {
 	public List<SiteNode> getChild(){
 		return this.child;
 	}
+	
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
 }

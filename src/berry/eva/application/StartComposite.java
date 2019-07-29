@@ -42,7 +42,9 @@ public class StartComposite extends Composite {
 				System.out.println(text_root.getText());
 				SearchEngine.getInstance().setUp("http://127.0.0.1:8188/dvwa/setup.php").searchingStart();
 				
-
+				SiteNodeManager.getInstance().setRootSiteContents(StartComposite.this.mainApp.getTreeViewer(), text_root.getText());
+				
+				
 			}
 		});
 	}
