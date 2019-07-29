@@ -119,13 +119,13 @@ public final class MainApplication extends ApplicationWindow {
 	
 	
 	private SiteNode createDummyTree() {
-		SiteNode dummy = new SiteNode(null, R.TEXT.KIND_SITE, "dummy");
-		SiteNode root = new SiteNode(dummy, R.TEXT.KIND_SITE, "site");
-		SiteNode dir1 = new SiteNode(root, R.TEXT.KIND_DIR, "directory1");
-		SiteNode dir2 = new SiteNode(root, R.TEXT.KIND_DIR, "directory2");
-		SiteNode file1 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file1");
-		SiteNode file2 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file2");
-		SiteNode file3 = new SiteNode(dir2, R.TEXT.KIND_FILE, "file2");
+		SiteNode dummy = new SiteNode(null, R.KIND.SITE, "dummy");
+		SiteNode root = new SiteNode(dummy, R.KIND.SITE, "site");
+		SiteNode dir1 = new SiteNode(root, R.KIND.DIR, "directory1");
+		SiteNode dir2 = new SiteNode(root, R.KIND.DIR, "directory2");
+		SiteNode file1 = new SiteNode(dir1, R.KIND.FILE, "file1");
+		SiteNode file2 = new SiteNode(dir1, R.KIND.FILE, "file2");
+		SiteNode file3 = new SiteNode(dir2, R.KIND.FILE, "file2");
 		
 		dummy.getChild().add(root);
 		

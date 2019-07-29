@@ -27,11 +27,11 @@ public class SiteTreeLabelProvider implements ILabelProvider{
 	@Override
 	public Image getImage(Object element) {
 		SiteNode node = (SiteNode)element;
-		if(node.getKind().equals(R.TEXT.KIND_SITE)) {
+		if(node.getKind().equals(R.KIND.SITE)) {
 			return site;
-		}else if(node.getKind().equals(R.TEXT.KIND_DIR)) {
+		}else if(node.getKind().equals(R.KIND.DIR)) {
 			return folder;
-		}else if(node.getKind().equals(R.TEXT.KIND_FILE)){
+		}else if(node.getKind().equals(R.KIND.FILE)){
 			return file;
 		}
 		return null;
