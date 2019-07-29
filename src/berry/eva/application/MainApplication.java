@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
+import org.eclipse.swt.widgets.TreeItem;
 
 import berry.eva.database.CrudManager;
 import berry.eva.project.Project;
@@ -78,7 +79,7 @@ public final class MainApplication extends ApplicationWindow {
 		treeViewer.getTree().setLayoutData(new GridData(GridData.FILL_VERTICAL));
 		treeViewer.setLabelProvider(labelProvider);
 		treeViewer.setContentProvider(contentProvider);
-		treeViewer.setInput(createDummy());
+		treeViewer.setInput(createDummyTree());
 		
 		folder_start = new TabFolder(sash_horizontal, SWT.NONE);
 		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
@@ -117,22 +118,25 @@ public final class MainApplication extends ApplicationWindow {
 	
 	
 	
-	private SiteNode createDummy() {
-		SiteNode root = new SiteNode(null, R.TEXT.KIND_SITE, "site");
+	private SiteNode createDummyTree() {
+		SiteNode dummy = new SiteNode(null, R.TEXT.KIND_SITE, "dummy");
+		SiteNode root = new SiteNode(dummy, R.TEXT.KIND_SITE, "site");
 		SiteNode dir1 = new SiteNode(root, R.TEXT.KIND_DIR, "directory1");
 		SiteNode dir2 = new SiteNode(root, R.TEXT.KIND_DIR, "directory2");
 		SiteNode file1 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file1");
 		SiteNode file2 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file2");
 		SiteNode file3 = new SiteNode(dir2, R.TEXT.KIND_FILE, "file2");
 		
-		dir1.getChild().add(file1);
-		dir1.getChild().add(file2);
-		dir2.getChild().add(file3);
+		dummy.getChild().add(root);
 		
 		root.getChild().add(dir1);
 		root.getChild().add(dir2);
 		
-		return root;
+		dir1.getChild().add(file1);
+		dir1.getChild().add(file2);
+		dir2.getChild().add(file3);
+		
+		return dummy;
 	}
 
 	@Override
