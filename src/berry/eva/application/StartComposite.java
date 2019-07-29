@@ -40,7 +40,7 @@ public class StartComposite extends Composite {
 			@Override
 			public void handleEvent(Event arg0) {
 				System.out.println(text_root.getText());
-				SearchEngine.getInstance().setUp("http://192.168.0.8/dvwa/setup.php").searchingStart();
+				SearchEngine.getInstance().setUp("http://127.0.0.1:8188/dvwa/setup.php").searchingStart();
 				
 
 			}

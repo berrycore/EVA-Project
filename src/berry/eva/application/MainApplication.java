@@ -35,6 +35,7 @@ public final class MainApplication extends ApplicationWindow {
 	private ScanComposite scanComposite;
 	private TabFolder folder_start;
 	private TabFolder folder_crawler;
+	private TreeViewer treeViewer;
 	
 	public StartComposite getStartComposite() {
 		return startComposite;
@@ -69,12 +70,15 @@ public final class MainApplication extends ApplicationWindow {
 		sash_horizontal.setSashWidth(5);
 		sash_vertical.setLayout(new FillLayout());
 		sash_horizontal.setLayout(new FillLayout());
-				
-		TreeViewer treeViewer = new TreeViewer(sash_horizontal);
+		
+		SiteTreeLabelProvider labelProvider = new SiteTreeLabelProvider();
+		SiteTreeContentProvider contentProvider = new SiteTreeContentProvider();
+		
+		treeViewer = new TreeViewer(sash_horizontal);
 		treeViewer.getTree().setLayoutData(new GridData(GridData.FILL_VERTICAL));
-		treeViewer.setLabelProvider(new SiteTreeLabelProvider());
-		treeViewer.setContentProvider(new SiteTreeContentProvider());
-		treeViewer.setInput("root");
+		treeViewer.setLabelProvider(labelProvider);
+		treeViewer.setContentProvider(contentProvider);
+		treeViewer.setInput(createDummy());
 		
 		folder_start = new TabFolder(sash_horizontal, SWT.NONE);
 		TabItem tab_quick = new TabItem(folder_start, SWT.NONE);
@@ -113,6 +117,24 @@ public final class MainApplication extends ApplicationWindow {
 	
 	
 	
+	private SiteNode createDummy() {
+		SiteNode root = new SiteNode(null, R.TEXT.KIND_SITE, "site");
+		SiteNode dir1 = new SiteNode(root, R.TEXT.KIND_DIR, "directory1");
+		SiteNode dir2 = new SiteNode(root, R.TEXT.KIND_DIR, "directory2");
+		SiteNode file1 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file1");
+		SiteNode file2 = new SiteNode(dir1, R.TEXT.KIND_FILE, "file2");
+		SiteNode file3 = new SiteNode(dir2, R.TEXT.KIND_FILE, "file2");
+		
+		dir1.getChild().add(file1);
+		dir1.getChild().add(file2);
+		dir2.getChild().add(file3);
+		
+		root.getChild().add(dir1);
+		root.getChild().add(dir2);
+		
+		return root;
+	}
+
 	@Override
 	protected void configureShell(Shell shell) {
 		super.configureShell(shell);

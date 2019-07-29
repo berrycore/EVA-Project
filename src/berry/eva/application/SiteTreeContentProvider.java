@@ -1,73 +1,34 @@
 package berry.eva.application;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.jface.viewers.ITreeContentProvider;
-import org.eclipse.jface.viewers.Viewer;
 
 public class SiteTreeContentProvider implements ITreeContentProvider {
 
-	private Map<String, String[]> contentMap = new HashMap<>();
-
-	public SiteTreeContentProvider() {
-	  initMap();
-	 }
-
-	private void initMap() {
-		String[] roots = { "root1", "root2" };
-
-		contentMap.put("roots", roots);
-
-		contentMap.put("root1", new String[] { "root1_child1", "root1_child2", "root1_child3" });
-		contentMap.put("root1_child1", new String[] { "root1_child1_child1", "root1_child1_child2" });
-	}
-
+	// parentElement 노드의 하위 노드가 존재하는 경우 자식 노드 배열을 리턴한다.
 	@Override
-	public Object[] getElements(Object arg0) {
-		return contentMap.get("roots");
+	public Object[] getChildren(Object parentElement) {
+		return getElements(parentElement);
 	}
 
+	// inputElement 노드의 하위 노드가 존재하는 경우 자식노드 배열을 리턴한다.
 	@Override
-	public void dispose() {
-		// TODO Auto-generated method stub
-
+	public Object[] getElements(Object inputElement) {
+		return ((SiteNode)inputElement).getChild().toArray();
 	}
 
+	// 현재 노드의 부모노드가 존재하는 경우 부모노드를 리턴한다.
+	// 부모노드가 null 인 경우 Tree 에서 최상위 노드가 된다.
 	@Override
-	public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
-		// TODO Auto-generated method stub
-
+	public Object getParent(Object element) {
+		if( element == null)
+			return null;
+		return ((SiteNode)element).getParent();
 	}
 
+	// 자식 노드가 실제로 존재하는지 검증 시 사용된다.
 	@Override
-	public Object[] getChildren(Object arg0) {
-		return contentMap.get(arg0);
+	public boolean hasChildren(Object element) {
+		return ((SiteNode)element).getChild().size() > 0;
 	}
-
-	@Override
-	public Object getParent(Object arg0) {
-		return getParentOfEle(arg0);
-	}
-
-	@Override
-	public boolean hasChildren(Object arg0) {
-		return contentMap.containsKey(arg0);
-	}
-
-	private String getParentOfEle(Object arg0) {
-		Set<String> keys = contentMap.keySet();
-
-		for (String key : keys) {
-			String[] values = contentMap.get(key);
-
-			for (String val : values) {
-				if (val.equals(arg0)) {
-					return key;
-				}
-			}
-		}
-		return null;
-	}
+	
 }
