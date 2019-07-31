@@ -1,7 +1,10 @@
 package berry.eva.application;
 
+import java.net.URISyntaxException;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.http.client.utils.URIBuilder;
 import org.eclipse.jface.viewers.TreeViewer;
 
 public class SiteNodeManager {
@@ -28,18 +31,19 @@ public class SiteNodeManager {
 		root.setContents(contents);
 		treeViewer.refresh();
 	}
-	
+
 	public void insertNode(TreeViewer treeViewer, String url) {
-		String test = "http://127.0.0.1/dvwa/setup.php";
 		
 		SiteNode node = new SiteNode();
 		node.setKind(R.KIND.FILE);
 		node.setContents(url);
 		node.setParent(root);
 		root.getChild().add(node);
-		
+
 		treeViewer.refresh();
 	}
+	
+	
 
 	public SiteNode createTestTree() {
 		SiteNode none = new SiteNode(null, R.KIND.SITE, "none");
