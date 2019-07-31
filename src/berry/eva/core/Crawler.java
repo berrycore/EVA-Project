@@ -2,15 +2,20 @@ package berry.eva.core;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.Iterator;
 
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.TreeItem;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import berry.eva.application.MainApplication;
+import berry.eva.application.SiteNode;
+import berry.eva.application.SiteNodeManager;
 
 public class Crawler implements Runnable {
 
@@ -72,9 +77,12 @@ public class Crawler implements Runnable {
 						return;
 					TableItem item = new TableItem(mainApp.getSpiderComposite().getTable(), SWT.NONE);
 					item.setText(url);
+					SiteNodeManager.getInstance().insertNode(mainApp.getTreeViewer(), url);	
 				}
 			});
 		}
-
+		// TODO : update TreeViewer
+		
+		
 	}
 }

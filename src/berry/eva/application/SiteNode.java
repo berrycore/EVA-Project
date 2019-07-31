@@ -10,11 +10,27 @@ public class SiteNode {
 	private String kind = "";
 	private String contents = "";
 	
+	public SiteNode() {
+		
+	}
+	
+	public SiteNode(String kind, String contents) {
+		this.kind = kind;
+		this.contents = contents;
+	}
 	
 	public SiteNode(SiteNode parent, String kind, String contents) {
 		this.parent = parent;
 		this.kind = kind;
 		this.contents = contents;
+	}
+	
+	public void setParent(SiteNode parent) {
+		this.parent = parent;
+	}
+	
+	public void setKind(String kind) {
+		this.kind = kind;
 	}
 	
 	public String getKind() {
@@ -36,4 +52,11 @@ public class SiteNode {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+
+	@Override
+	public String toString() {
+		return "SiteNode [parent=" + parent + ", child=" + child + ", kind=" + kind + ", contents=" + contents + "]";
+	}
+	
+	
 }

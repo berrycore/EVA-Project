@@ -83,7 +83,7 @@ public final class MainApplication extends ApplicationWindow {
 		treeViewer.getTree().setLayoutData(new GridData(GridData.FILL_VERTICAL));
 		treeViewer.setLabelProvider(labelProvider);
 		treeViewer.setContentProvider(contentProvider);
-		//treeViewer.setInput(SiteNodeManager.getInstance().createDummyTree());
+		//treeViewer.setInput(SiteNodeManager.getInstance().createTestTree());
 		treeViewer.setInput(SiteNodeManager.getInstance().createDefaultTree());
 
 		folder_start = new TabFolder(sash_horizontal, SWT.NONE);

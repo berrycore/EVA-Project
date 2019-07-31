@@ -31,7 +31,7 @@ public class StartComposite extends Composite {
 		
 		text_root = new Text(this, SWT.BORDER | SWT.SINGLE);
 		text_root.setLayoutData(new RowData(200, SWT.DEFAULT) );
-		text_root.setText("http://127.0.0.1/");
+		text_root.setText("http://127.0.0.1:8188/");
 		
 		button_start = new Button(this, SWT.NONE);
 		button_start.setText("START");
