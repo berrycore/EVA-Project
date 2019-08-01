@@ -67,6 +67,9 @@ public class Crawler implements Runnable {
 
 	@Override
 	public void run() {
+		
+		mainApp.getSpiderComposite().progressBarStart();
+		
 		getPageLinks(root);
 		for (String url : links) {
 			URLQueue.getInstance().offer(url);
@@ -81,6 +84,7 @@ public class Crawler implements Runnable {
 				}
 			});
 		}
+		mainApp.getSpiderComposite().progressBarStop();
 		// TODO : update TreeViewer
 		
 		
