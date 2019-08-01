@@ -2,6 +2,8 @@ package berry.eva.evaluation;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+
 import berry.eva.evaluation.Category;
 
 public class WeaknessEnumeration {
@@ -13,6 +15,18 @@ public class WeaknessEnumeration {
 	}
 	
 	private Map<String, Weakness> map = new HashMap<String, Weakness>();
+	
+	public  Set<String> keySet() {
+		return map.keySet();
+	}
+	
+	public Weakness get(String key_cwe_id) {
+		return map.get(key_cwe_id);
+	}
+	
+	public Map<String, Weakness> getWeaknessMap(){
+		return this.map;
+	}
 	
 	private WeaknessEnumeration() {
 		//TODO : form Databases;
@@ -113,12 +127,5 @@ public class WeaknessEnumeration {
 		map.put("CWE_223", CWE_223);
 		map.put("CWE_778", CWE_778);
 	}
-	
-	public Weakness get(String CWE_ID) {
-		return map.get(CWE_ID);
-	}
-	
-	public Map<String, Weakness> getWeaknessMap(){
-		return this.map;
-	}
+
 }

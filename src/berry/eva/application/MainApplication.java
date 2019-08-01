@@ -224,7 +224,12 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-				// TODO :
+				PolicyManagerDialog dialog = new PolicyManagerDialog(getShell());
+				dialog.create();
+				if (dialog.open() == Window.OK) {
+					// TODO : get 으로 받아서 DB 나 Manager 으로 저장하기
+					
+				}
 			}
 
 		});
