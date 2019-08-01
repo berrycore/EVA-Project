@@ -36,4 +36,8 @@ public class ContextManager {
 	public boolean containsValue(Context context) {
 		return map.containsValue(context);
 	}
+	
+	public int size() {
+		return map.size();
+	}
 }

@@ -7,15 +7,17 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.ProgressBar;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.widgets.TableItem;
 
 import berry.eva.core.Context;
 import berry.eva.core.ContextManager;
+import berry.eva.core.Status;
+import berry.eva.core.Status.Scanning;
 import berry.eva.evaluation.Analyzer;
 import berry.eva.util.TextConverter;
 
@@ -23,6 +25,8 @@ public class ScanComposite extends Composite {
 	
 	private Table table;
 	private ProgressBar progressBar;
+	private Thread thread;
+	
 	private Button button_selectPolicy;
 	private Button button_startScan;
 
@@ -34,7 +38,6 @@ public class ScanComposite extends Composite {
 
 		initProgressBar();
 		initTable();
-		
 	}
 
 	private void initTable() {
@@ -111,7 +114,7 @@ public class ScanComposite extends Composite {
 		Composite innerComposite = new Composite(this, SWT.NONE);
 		//innerComposite.setLayout(new GridLayout(1, true));
 		innerComposite.setLayout(new RowLayout(SWT.HORIZONTAL));
-		progressBar = new ProgressBar(innerComposite, SWT.NONE);
+		progressBar = new ProgressBar(innerComposite, SWT.SMOOTH);
 		
 		button_selectPolicy = new Button(innerComposite, SWT.CENTER);
 		button_selectPolicy.setText("Policy : Default");
@@ -123,6 +126,8 @@ public class ScanComposite extends Composite {
 			@Override
 			public void handleEvent(Event event) {
 				System.out.println("scan started !");
+				Status.setStatus(Scanning.ON);
+				progressBarStart();
 				Thread analyzer = new Thread(Analyzer.getInstance());
 				analyzer.start();
 			}
@@ -131,5 +136,43 @@ public class ScanComposite extends Composite {
 	
 	public Table getTable() {
 		return this.table;
+	}
+	
+	public void progressBarStart() {
+		thread = new ScanningOperation(getDisplay(), progressBar);
+		thread.start();
+	}
+	
+	public void progressBarStop() {
+		Status.setStatus(Status.Scanning.OFF);
+	}
+}
+
+
+class ScanningOperation extends Thread {
+	private Display display;
+	private ProgressBar progressBar;
+
+	public ScanningOperation(Display display, ProgressBar progressBar) {
+		this.display = display;
+		this.progressBar = progressBar;
+	}
+
+	public void run() {
+
+		while(Status.isScanning()) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+			display.asyncExec(new Runnable() {
+				public void run() {
+					if (progressBar.isDisposed())
+						return;
+					progressBar.setMaximum(Status.TASK_COUNT);
+					progressBar.setSelection(progressBar.getSelection() + 1);
+				}
+			});
+		}
 	}
 }

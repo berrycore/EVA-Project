@@ -1,5 +1,6 @@
 package berry.eva.evaluation;
 
+import java.net.URL;
 import java.util.List;
 
 import org.eclipse.swt.SWT;
@@ -10,6 +11,8 @@ import berry.eva.application.MainApplication;
 import berry.eva.core.Context;
 import berry.eva.core.ContextManager;
 import berry.eva.core.Status;
+import berry.eva.core.Status.Scanning;
+import berry.eva.core.Status.Searching;
 import berry.eva.core.URLQueue;
 import berry.eva.policy.PolicyManager;
 
@@ -30,10 +33,9 @@ public final class Analyzer implements Runnable {
 	}
 
 	public void startScan(String url) {
-		MainApplication mainApp = MainApplication.getInstance();
-		
+		MainApplication mainApp = MainApplication.getInstance();		
 		List<Vulnerable> v_list = PolicyManager.getInstance().getPolicy().getList();
-
+		
 		for (Vulnerable vul : v_list) {
 			Context context = vul.execute(url);
 
@@ -81,11 +83,14 @@ public final class Analyzer implements Runnable {
 	@Override
 	public void run() {
 
+		Status.TASK_COUNT = URLQueue.getInstance().getSize() * PolicyManager.getInstance().getPolicy().getList().size();
+		System.out.println(Status.TASK_COUNT);
+		
+		
 		// while(Status.isSearching()) {
-		while ((URLQueue.getInstance().isEmpty() == false) && (Status.isSearching())) {
+		while ((URLQueue.getInstance().isEmpty() == false) && (Status.isScanning())) {
 			System.out.println("Analyzer is waiting...");
-			// System.out.println("URLQueue.getInstance().poll() -> " +
-			// URLQueue.getInstance().poll());
+
 			String url = URLQueue.getInstance().poll();
 			if (url != null) {
 				startScan(url);
@@ -97,6 +102,6 @@ public final class Analyzer implements Runnable {
 				e.printStackTrace();
 			}
 		}
-
+		Status.setStatus(Scanning.OFF);
 	}
 }

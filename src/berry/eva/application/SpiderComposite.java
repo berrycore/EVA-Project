@@ -81,7 +81,8 @@ public class SpiderComposite extends Composite {
 	}
 	
 	public void progressBarStart() {
-		thread = new LongRunningOperation(getDisplay(), progressBar);
+		
+		thread = new SpideringOperation(getDisplay(), progressBar);
 		thread.start();
 	}
 	
@@ -97,11 +98,11 @@ public class SpiderComposite extends Composite {
 
 }
 
-class LongRunningOperation extends Thread {
+class SpideringOperation extends Thread {
 	private Display display;
 	private ProgressBar progressBar;
 
-	public LongRunningOperation(Display display, ProgressBar progressBar) {
+	public SpideringOperation(Display display, ProgressBar progressBar) {
 		this.display = display;
 		this.progressBar = progressBar;
 	}

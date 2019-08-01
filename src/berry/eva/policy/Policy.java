@@ -39,4 +39,8 @@ public class Policy {
 	public List<Vulnerable> getList(){
 		return this.list_vulnerable;
 	}
+	
+	public int size() {
+		return this.list_vulnerable.size();
+	}
 }
