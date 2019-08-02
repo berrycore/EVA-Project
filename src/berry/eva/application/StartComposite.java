@@ -30,7 +30,7 @@ public class StartComposite extends Composite {
 		label_start.setText("Target : ");
 		
 		text_root = new Text(this, SWT.BORDER | SWT.SINGLE);
-		text_root.setLayoutData(new RowData(200, SWT.DEFAULT) );
+		text_root.setLayoutData(new RowData(400, SWT.DEFAULT) );
 		text_root.setText("http://127.0.0.1:8188/");
 		
 		button_start = new Button(this, SWT.NONE);
@@ -39,11 +39,10 @@ public class StartComposite extends Composite {
 			
 			@Override
 			public void handleEvent(Event arg0) {
-				System.out.println(text_root.getText());
-				SearchEngine.getInstance().setUp("http://127.0.0.1:8188/dvwa/setup.php").searchingStart();
+				
+				SearchEngine.getInstance().setUp(text_root.getText()).searchingStart();
 				
 				SiteNodeManager.getInstance().setRootSiteContents(StartComposite.this.mainApp.getTreeViewer(), text_root.getText());
-				
 				
 			}
 		});

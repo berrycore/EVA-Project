@@ -257,12 +257,14 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public String getText() {
-				return "&Help Contents";
+				return "&Contact";
 			}
 
 			@Override
 			public void run() {
-				// TODO :
+				HelpDialog dialog = new HelpDialog(getShell());
+				dialog.create();
+				dialog.open();
 			}
 
 		});
@@ -275,7 +277,11 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-				// TODO :
+				ReferenceDialog dialog = new ReferenceDialog(getShell());
+				dialog.create();
+				if (dialog.open() == Window.OK) {
+					
+				}
 			}
 		});
 

@@ -6,7 +6,10 @@ public class R {
 	final public static class TEXT{
 		final public static String ERROR_MSG = "";
 		final public static String UN_KNOWN = "UN_KNOWN";
-		
+		final public static String HElP_VERSION = "Version : 1.0.0";
+		final public static String HELP_CONTACT = "We have created an automation program to check for web vulnerabilities. \n" + 
+				"If you have any questions about bugs, please contact us at the following e-mail address.";
+		final public static String HELP_EMAIL = "berrycore@gmail.com";
 	}
 	
 	final public static class KIND{
