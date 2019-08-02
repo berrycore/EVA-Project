@@ -6,8 +6,10 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -21,6 +23,7 @@ import berry.eva.evaluation.Weakness;
 import berry.eva.evaluation.WeaknessEnumeration;
 import berry.eva.project.Project;
 import berry.eva.project.ProjectManager;
+import berry.eva.util.TextConverter;
 
 public class PolicyManagerDialog extends TitleAreaDialog {
 
@@ -50,12 +53,9 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		GridLayout layout = new GridLayout(2, false);
 		container.setLayout(layout);
 		
-		label_current_policy = new Label(container, SWT.BOLD);
-		label_current_policy.setText("Select Policy : ");
+		initLabel(container);
 		
-		initComboBox(container);
-		
-		final ScrolledComposite scrolledComposite = new ScrolledComposite(area, SWT.NONE);
+		final ScrolledComposite scrolledComposite = new ScrolledComposite(container, SWT.NONE);
 		scrolledComposite.setLayout(new GridLayout());
 		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -64,6 +64,27 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		return area;
 	}
 	
+	private void initLabel(Composite parent) {
+		Composite innerContainer = new Composite(parent, SWT.NONE);
+		innerContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridLayout layout = new GridLayout(2, false);
+		innerContainer.setLayout(layout);
+		
+		label_current_policy = new Label(innerContainer, SWT.BOLD);
+		label_current_policy.setText("Select Policy : ");
+		
+		combo_policy = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
+		String[] items = new String[] { "default", "???" };
+		combo_policy.setItems(items);
+		combo_policy.select(0);
+		
+		// TODO : LoadingPolicyFromDatabase
+	}
+	
+	private void LoadingPolicyFromDatabase(Composite container) {
+		// TODO : Database setting
+		
+	}
 	private void initTable(ScrolledComposite container) {
 		
 		table = new Table(container, SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);
@@ -74,9 +95,13 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		container.setExpandVertical(true);
 		container.setAlwaysShowScrollBars(true);
 		
+		TableColumn col_use = new TableColumn(table, SWT.CENTER);
+		col_use.setText("use");
+		col_use.setWidth(30);
+		
 		TableColumn col_available = new TableColumn(table, SWT.LEFT);
 		col_available.setText("Available");
-		col_available.setWidth(60);
+		col_available.setWidth(90);
 		
 		TableColumn col_category = new TableColumn(table, SWT.LEFT);
 		col_category.setText("Category");
@@ -92,10 +117,10 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		
 		TableColumn col_description = new TableColumn(table, SWT.LEFT);
 		col_description.setText("Description");
-		col_description.setWidth(400);
+		col_description.setWidth(450);
 				
 				
-		//initWeaknessEnumeration(table);
+		initWeaknessEnumeration(table);
 	}
 	
 	private void initWeaknessEnumeration(Table table) {
@@ -106,24 +131,26 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 			Weakness weakness =  WeaknessEnumeration.getInstance().get(key_cwe_id);
 			
 			TableItem item = new TableItem(table, SWT.NONE);
-			item.setText(0, "???");
-			item.setText(1, weakness.getCategory().name());
-			item.setText(2, weakness.getCwe_id());
-			item.setText(3, weakness.getAttackName());
-			item.setText(4, weakness.getDescription());
+			TableEditor editor = new TableEditor(table);
+			Button button_use = new Button(table, SWT.CHECK);
+			button_use.setEnabled( isAvailable(weakness.getAvailable()) );
+			button_use.setSelection( isAvailable(weakness.getAvailable()));
+			button_use.pack();
+			editor.minimumWidth = button_use.getSize().x;
+			editor.horizontalAlignment = SWT.CENTER;
+			editor.setEditor(button_use, item, 0);
+			item.setText(1, TextConverter.IntToAvailable(weakness.getAvailable()));
+			item.setText(2, weakness.getCategory().name());
+			item.setText(3, weakness.getCwe_id());
+			item.setText(4, weakness.getAttackName());
+			item.setText(5, weakness.getDescription());
 		}
 	}
 	
-	private void initComboBox(Composite container) {
-
-		// TODO : Database setting
-		
-		combo_policy = new Combo(container, SWT.DROP_DOWN | SWT.READ_ONLY);
-		String[] items = new String[] { "default", "???" };
-		combo_policy.setItems(items);
-		combo_policy.select(0);
-
+	private boolean isAvailable(Integer i) {
+		return i==1? true : false;
 	}
+
 	
 	@Override
 	protected boolean isResizable() {

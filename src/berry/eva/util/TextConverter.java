@@ -15,4 +15,9 @@ public final class TextConverter {
 		
 		return buffer.toString();
 	}
+
+	
+	public static String IntToAvailable(Integer i) {
+		return (i==1)? "Available" : "NotAvailable";
+	}
 }

@@ -2,6 +2,7 @@ package berry.eva.evaluation;
 
 public class Weakness {
 
+	private Integer available;
 	private Category category;
 	private String cwe_id;
 	private String attackName;
@@ -9,17 +10,26 @@ public class Weakness {
 	
 	public Weakness() {}
 	
-	public Weakness(Category category, String cwe_id, String attackName, String description) {
+	public Weakness(Integer available ,Category category, String cwe_id, String attackName, String description) {
+		this.available = available;
 		this.category = category;
 		this.cwe_id = cwe_id;
 		this.attackName = attackName;
 		this.description = description;
 	}
 
+	public Integer getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Integer available) {
+		this.available = available;
+	}
+	
 	public Category getCategory() {
 		return category;
 	}
-
+	
 	public void setCategory(Category category) {
 		this.category = category;
 	}
@@ -53,6 +63,7 @@ public class Weakness {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((attackName == null) ? 0 : attackName.hashCode());
+		result = prime * result + ((available == null) ? 0 : available.hashCode());
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((cwe_id == null) ? 0 : cwe_id.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
@@ -73,6 +84,11 @@ public class Weakness {
 				return false;
 		} else if (!attackName.equals(other.attackName))
 			return false;
+		if (available == null) {
+			if (other.available != null)
+				return false;
+		} else if (!available.equals(other.available))
+			return false;
 		if (category != other.category)
 			return false;
 		if (cwe_id == null) {
@@ -90,7 +106,9 @@ public class Weakness {
 
 	@Override
 	public String toString() {
-		return "Weakness [category=" + category + ", cwe_id=" + cwe_id + ", attackName=" + attackName + ", description="
-				+ description + "]";
+		return "Weakness [available=" + available + ", category=" + category + ", cwe_id=" + cwe_id + ", attackName="
+				+ attackName + ", description=" + description + "]";
 	}
+
+	
 }
