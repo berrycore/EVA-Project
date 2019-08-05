@@ -153,7 +153,7 @@ public final class MainApplication extends ApplicationWindow {
 				if (dialog.open() == Window.OK) {
 					String projectName = dialog.getProjectName();
 					Project project = new Project(projectName);
-					ProjectManager.getInstance().add(project);
+					
 					ProjectManager.getInstance().createNewTables(project);
 					getShell().setText(R.EVA_PROJECT + " : " + projectName);
 				}

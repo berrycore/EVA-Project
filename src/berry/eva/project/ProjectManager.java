@@ -26,17 +26,9 @@ public class ProjectManager {
 		CrudManager crud = new CrudManager();
 		list_project = new ArrayList<Project>();
 		List<DAO_projects> dao_list = crud.select_projects_all();
-			
-		for(DAO_projects dao : dao_list) {
-			this.list_project.add(new Project(dao.getProjectname(), dao.getCreatedtime()));
-		}
 		
 		
 		return list_project;
-	}
-	
-	public boolean add(Project project) {
-		return list_project.add(project);
 	}
 	
 	public void createNewTables(Project project) {
