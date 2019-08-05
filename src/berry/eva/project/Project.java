@@ -13,9 +13,17 @@ public class Project {
 	private String createdtime;
 	private List<Policy> policies = new ArrayList<Policy>();
 
+	public Project() {
+		
+	}
+	
 	public Project(String name) {
 		this.name = name;
-		this.createdtime = getCurrentTime();
+	}
+	
+	public Project(String name, String createdtime) {
+		this.name = name;
+		this.createdtime = createdtime;
 	}
 	
 	public void addPolicy(Policy p) {
@@ -29,16 +37,20 @@ public class Project {
 	public String getName() {
 		return this.name;
 	}
-
+	
+	public void setCreatedTime(String time) {
+		this.createdtime = time;
+	}
+	
 	public String getCreatedTime() {
 		return this.createdtime;
 	}
 
-	private String getCurrentTime() {
-		long time = System.currentTimeMillis();
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		return dayTime.format(new Date(time));
-	}
-	
+//	private String getCurrentTime() {
+//		long time = System.currentTimeMillis();
+//		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+//		return dayTime.format(new Date(time));
+//	}
+//	
 	
 }

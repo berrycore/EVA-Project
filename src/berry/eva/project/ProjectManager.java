@@ -8,30 +8,31 @@ import berry.eva.database.dao.DAO_projects;
 
 public class ProjectManager {
 
+	private Project currentProject;
 	private List<Project> list_project;
 
 	private static ProjectManager instance = new ProjectManager();
 
 	private ProjectManager() {	
-		this.list_project = new ArrayList<Project>();
+		
 	}
 
 	public static ProjectManager getInstance() {
 		return instance;
 	}
 
-	public Project getProject(String projectName) {
-		Project project = null;
-		for(Project p : list_project) {
-			if( p.getName().equals(projectName)) {
-				return p;
-			}
-		}
-		return project;
-	}
 	
-	public Project[] getProjects() {
-		return (Project[]) list_project.toArray();
+	public List<Project> getProjects() {
+		CrudManager crud = new CrudManager();
+		list_project = new ArrayList<Project>();
+		List<DAO_projects> dao_list = crud.select_projects_all();
+			
+		for(DAO_projects dao : dao_list) {
+			this.list_project.add(new Project(dao.getProjectname(), dao.getCreatedtime()));
+		}
+		
+		
+		return list_project;
 	}
 	
 	public boolean add(Project project) {
@@ -42,5 +43,16 @@ public class ProjectManager {
 		CrudManager crud = new CrudManager();
 		DAO_projects dao = new DAO_projects(project.getName(), project.getCreatedTime());
 		Integer result = crud.insert_project(dao);
+		if(result == 1) {
+			setCurrentProject(project);
+		}
+	}
+	
+	private void setCurrentProject(Project p) {
+		this.currentProject = p;
+	}
+	
+	public Project getCurrentProject() {
+		return this.currentProject;
 	}
 }

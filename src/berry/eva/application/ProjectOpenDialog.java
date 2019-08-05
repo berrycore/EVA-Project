@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import berry.eva.database.CrudManager;
 import berry.eva.database.dao.DAO_projects;
+import berry.eva.project.ProjectManager;
 
 public class ProjectOpenDialog extends TitleAreaDialog{
 
@@ -68,6 +69,7 @@ public class ProjectOpenDialog extends TitleAreaDialog{
 		CrudManager crud = new CrudManager();
 		List<DAO_projects> list = crud.select_projects_all();
 		int size = list.size();
+		
 		String[] items = new String[size];
 		for(int i = 0; i<size; i++) {
 			items[i] = new String(list.get(i).getProjectname());	

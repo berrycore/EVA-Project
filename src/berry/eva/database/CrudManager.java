@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import berry.eva.application.R;
+import berry.eva.database.dao.DAO_policy;
 import berry.eva.database.dao.DAO_projects;
 
 public final class CrudManager {
@@ -49,6 +50,23 @@ public final class CrudManager {
 		try {
 			String query = R.MyBatis.NAME_SPACE + ".insert_project";
 			resultCode = ss.insert(query, dao);	
+			if(resultCode == 1) {
+				ss.commit();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ss.close();
+		}
+		return resultCode;
+	}
+	
+	public Integer insert_policy(DAO_policy dao) {
+		Integer resultCode = null;
+		SqlSession ss = getSession();
+		try {
+			String query = R.MyBatis.NAME_SPACE + ".insert_policy";
+			resultCode = ss.insert(query, dao);
 			if(resultCode == 1) {
 				ss.commit();
 			}

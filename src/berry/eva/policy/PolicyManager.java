@@ -1,5 +1,8 @@
 package berry.eva.policy;
 
+import berry.eva.database.CrudManager;
+import berry.eva.database.dao.DAO_policy;
+
 public class PolicyManager {
 
 	private Policy policy;
@@ -22,6 +25,12 @@ public class PolicyManager {
 	 
 	private void setDefaultPolicy() {
 		this.policy = new DefaultPolicy("default");
+	}
+	
+	public void addPolicy(Policy policy, String projectName) {
+		CrudManager crud = new CrudManager();
+		crud.insert_policy(new DAO_policy(policy.getName(), projectName));
+		
 	}
 	
 }

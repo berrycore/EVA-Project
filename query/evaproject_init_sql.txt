@@ -4,10 +4,17 @@ GRANT CREATE table, CREATE session, CREATE view to evaproject;
 ALTER USER EVAPROJECT QUOTA 100M ON evaproject;  
 GRANT UNLIMITED TABLESPACE TO EVAPROJECT;
 ------------------------------------------------------------------
-CREATE TABLE projects (
+CREATE TABLE eva_projects (
 projectname varchar2(50),
-createdtime varchar2(50)
+createdtime varchar2(50),
+constraint pk_eva_projects primary key(projectname)
 );
-
+-----------------------------------------------------------------
+CREATE TABLE eva_policys (
+policyname varchar2(50),
+projectname varchar2(50),
+constraint fk_eva_policys foreign key(projectname) references eva_projects(projectname) on delete cascade
+); 
 ------------------------------------------------------------------
 insert into projects (projectname, createdtime) values(#{projectname}, #{createdtime})
+insert into polic

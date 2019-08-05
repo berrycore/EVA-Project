@@ -6,6 +6,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.text.projection.ProjectionMapping;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.window.Window;
@@ -15,12 +16,15 @@ import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.TreeItem;
 
 import berry.eva.database.CrudManager;
+import berry.eva.policy.Policy;
+import berry.eva.policy.PolicyManager;
 import berry.eva.project.Project;
 import berry.eva.project.ProjectManager;
 
@@ -225,7 +229,21 @@ public final class MainApplication extends ApplicationWindow {
 				PolicyManagerDialog dialog = new PolicyManagerDialog(getShell());
 				dialog.create();
 				if (dialog.open() == Window.OK) {
-					// TODO : get 으로 받아서 DB 나 Manager 으로 저장하기
+					String newPolicyName = dialog.getNewPolicyName();
+					Project project = ProjectManager.getInstance().getCurrentProject();
+					if( project == null ) {
+						
+						MessageBox msgBox2 = new MessageBox(MainApplication.this.getShell(), SWT.ICON_INFORMATION | SWT.OK );
+						msgBox2.setText("MessageBox");
+						msgBox2.setMessage("프로젝트가 선택되지 않았습니다. 프로젝트를 생성하거나 선택 해야 합니다.");
+						msgBox2.open();
+						
+					}else {
+						
+						String projectName = project.getName();
+						PolicyManager.getInstance().addPolicy(new Policy(newPolicyName), projectName);	
+					}
+					
 					
 				}
 			}

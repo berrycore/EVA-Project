@@ -4,10 +4,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="berry.eva.database.myMapper">
 	<select id="select_projects_all" resultType="berry.eva.database.dao.DAO_projects">
-		select * from projects
+		select * from eva_projects
 	</select>
 	<insert id="insert_project" parameterType="berry.eva.database.dao.DAO_projects">
-		insert into projects (projectname, createdtime) values(#{projectname}, #{createdtime})
+		insert into eva_projects (projectname, createdtime) values(#{projectname}, #{createdtime})
+	</insert>
+	<insert id="insert_policy" parameterType="berry.eva.database.dao.DAO_policy">
+		insert into eva_policys (policyname, projectname) values (#{policyname}, #{projectname})
 	</insert>
 </mapper>
 

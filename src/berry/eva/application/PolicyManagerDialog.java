@@ -18,6 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
 
 import berry.eva.evaluation.Weakness;
 import berry.eva.evaluation.WeaknessEnumeration;
@@ -28,8 +29,11 @@ import berry.eva.util.TextConverter;
 public class PolicyManagerDialog extends TitleAreaDialog {
 
 	private Label label_current_policy;
+	private Label label_new_policy;
+	private Text  text_new_policy;
 	private Combo combo_policy;
 	private Table table;
+	private String newPolicyName;
 	
 	public PolicyManagerDialog(Shell parentShell) {
 		super(parentShell);
@@ -79,6 +83,11 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		combo_policy.select(0);
 		
 		// TODO : LoadingPolicyFromDatabase
+		label_new_policy = new Label(innerContainer, SWT.BOLD);
+		label_new_policy.setText("New Poject Name");
+		
+		text_new_policy = new Text(innerContainer, SWT.BORDER);
+		
 	}
 	
 	private void LoadingPolicyFromDatabase(Composite container) {
@@ -159,10 +168,14 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
-		// TODO Auto-generated method stub
+		newPolicyName = text_new_policy.getText();
+
 		super.okPressed();
 	}
 
+	public String getNewPolicyName() {
+		return this.newPolicyName;
+	}
 	
 	public Label getLabel_current_policy() {
 		return label_current_policy;
