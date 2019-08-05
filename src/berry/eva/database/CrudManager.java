@@ -8,17 +8,18 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import berry.eva.application.R;
 import berry.eva.database.dao.DAO_projects;
 
 public final class CrudManager {
 
-	private static final String NAME_SPACE = "berry.eva.database.myMapper";
+	//private static final String NAME_SPACE = "berry.eva.database.myMapper";
 
 	private SqlSession getSession() {
-		String path_config = "berry/eva/database/mybatis_config.xml";
+		//String path_config = "berry/eva/database/mybatis_config.xml";
 		InputStream is = null;
 		try {
-			is = Resources.getResourceAsStream(path_config);
+			is = Resources.getResourceAsStream(R.MyBatis.PATH_CONFIG);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -32,7 +33,7 @@ public final class CrudManager {
 		SqlSession ss = getSession();
 		List<Object> list = null;
 		try {
-			String query = NAME_SPACE + ".select_projects_all";
+			String query = R.MyBatis.NAME_SPACE + ".select_projects_all";
 			list = ss.selectList(query);
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -46,7 +47,7 @@ public final class CrudManager {
 		Integer resultCode = null;
 		SqlSession ss = getSession();
 		try {
-			String query = NAME_SPACE + ".insert_project";
+			String query = R.MyBatis.NAME_SPACE + ".insert_project";
 			resultCode = ss.insert(query, dao);	
 			if(resultCode == 1) {
 				ss.commit();

@@ -17,4 +17,9 @@ public class R {
 		final public static String DIR = "KIND_DIR";
 		final public static String FILE = "KIND_FILE";
 	}
+	
+	final public static class MyBatis {
+		final public static String NAME_SPACE = "berry.eva.database.myMapper";
+		final public static String PATH_CONFIG = "berry/eva/database/mybatis_config.xml";
+	}
 }
