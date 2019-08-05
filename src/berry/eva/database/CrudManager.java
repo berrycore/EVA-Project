@@ -29,9 +29,9 @@ public final class CrudManager {
 		return session;
 	}
 	
-	public List<Object> select_projects_all(){
+	public List<DAO_projects> select_projects_all(){
 		SqlSession ss = getSession();
-		List<Object> list = null;
+		List<DAO_projects> list = null;
 		try {
 			String query = R.MyBatis.NAME_SPACE + ".select_projects_all";
 			list = ss.selectList(query);

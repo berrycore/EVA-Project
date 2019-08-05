@@ -144,7 +144,7 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-				ProjectManagerDialog dialog = new ProjectManagerDialog(getShell());
+				ProjectCreateDialog dialog = new ProjectCreateDialog(getShell());
 				dialog.create();
 				if (dialog.open() == Window.OK) {
 					String projectName = dialog.getProjectName();
@@ -166,15 +166,13 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-				String[] buttons = { IDialogConstants.OK_LABEL, IDialogConstants.CANCEL_LABEL };
-				MessageDialog dialog = new MessageDialog(getShell(), "Title", null, "File/Open selected!",
-						MessageDialog.INFORMATION, buttons, 0);
-				dialog.open();
+				ProjectOpenDialog dialog = new ProjectOpenDialog(getShell());
+				dialog.create();
+				if (dialog.open() == Window.OK) {
+					String projectName = dialog.getProjectName();
+					MainApplication.this.getShell().setText(R.EVA_PROJECT + " : " + projectName);
+				}
 
-				// TEST open project list from database;
-				CrudManager crud = new CrudManager();
-				List<Object> list = crud.select_projects_all();
-				System.out.println(list);
 			}
 
 			@Override

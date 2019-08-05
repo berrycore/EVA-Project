@@ -11,12 +11,12 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class ProjectManagerDialog extends TitleAreaDialog {
+public class ProjectCreateDialog extends TitleAreaDialog {
 
 	private Text text_projectName;
 	private String projectName;
 	
-	public ProjectManagerDialog(Shell parentShell) {
+	public ProjectCreateDialog(Shell parentShell) {
 		super(parentShell);
 
 	}
