@@ -1,12 +1,7 @@
 package berry.eva.application;
 
-import java.util.List;
-
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.text.projection.ProjectionMapping;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.window.Window;
@@ -20,9 +15,7 @@ import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.swt.widgets.TreeItem;
 
-import berry.eva.database.CrudManager;
 import berry.eva.policy.Policy;
 import berry.eva.policy.PolicyManager;
 import berry.eva.project.Project;
@@ -259,7 +252,11 @@ public final class MainApplication extends ApplicationWindow {
 
 			@Override
 			public void run() {
-				// TODO :
+				ConfigDialog dialog = new ConfigDialog(getShell());
+				dialog.create();
+				if(dialog.open() == Window.OK) {
+					
+				}
 			}
 
 		});
