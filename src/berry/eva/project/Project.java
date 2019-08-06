@@ -46,11 +46,11 @@ public class Project {
 		return this.createdtime;
 	}
 
-//	private String getCurrentTime() {
-//		long time = System.currentTimeMillis();
-//		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-//		return dayTime.format(new Date(time));
-//	}
-//	
+	public String getCurrentTime() {
+		long time = System.currentTimeMillis();
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		return dayTime.format(new Date(time));
+	}
+	
 	
 }

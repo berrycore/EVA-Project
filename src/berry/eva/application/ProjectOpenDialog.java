@@ -15,13 +15,15 @@ import org.eclipse.swt.widgets.Shell;
 
 import berry.eva.database.CrudManager;
 import berry.eva.database.dao.DAO_projects;
+import berry.eva.project.Project;
 import berry.eva.project.ProjectManager;
 
 public class ProjectOpenDialog extends TitleAreaDialog{
 
 	private Label label_project;
 	private Combo combo_project;
-	private String projectName;
+	//private String projectName;
+	private Project project;
 	
 	public ProjectOpenDialog(Shell parentShell) {
 		super(parentShell);
@@ -84,12 +86,15 @@ public class ProjectOpenDialog extends TitleAreaDialog{
 
 	@Override
 	protected void okPressed() {
-		this.projectName = combo_project.getText();
+		String projectName = combo_project.getText();
+		Project p = ProjectManager.getInstance().getProject(projectName); 
+		this.project = p;
 		super.okPressed();
 	}
 	
-	public String getProjectName() {
-		return this.projectName;
+	public Project getSelectedProject() {
+		return this.project;
 	}
+	
 	
 }

@@ -6,6 +6,9 @@
 	<select id="select_projects_all" resultType="berry.eva.database.dao.DAO_projects">
 		select * from eva_projects
 	</select>
+	<select id="select_project" resultType="berry.eva.database.dao.DAO_projects" parameterType="String">
+		select * from eva_projects where projectname = #{projectname}
+	</select>
 	<insert id="insert_project" parameterType="berry.eva.database.dao.DAO_projects">
 		insert into eva_projects (projectname, createdtime) values(#{projectname}, #{createdtime})
 	</insert>

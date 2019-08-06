@@ -7,13 +7,27 @@ import berry.eva.core.Status.Scanning;
 import berry.eva.core.Status.Searching;
 
 public final class ApplicationLauncher {
+	
+	
 
 	public static void main(String[] args) {
 		
-		//TODO : splash screeen
 		
-		MainApplication awindow = new MainApplication();
+		
+		
+		Display display = new Display();
+		SplashWindow splashWindow = new SplashWindow(display);
+		while((Display.getCurrent().isDisposed())) {
+			if(!display.readAndDispatch()) {
+				display.sleep();
+			}
+		}
+		display.dispose();
+					
+			
+		MainApplication awindow = MainApplication.getInstance();
 		awindow.setBlockOnOpen(true);
+		
 		awindow.open();
 		Display.getCurrent().dispose();
 		

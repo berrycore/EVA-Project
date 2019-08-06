@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import berry.eva.application.R;
 import berry.eva.database.dao.DAO_policy;
 import berry.eva.database.dao.DAO_projects;
+import berry.eva.project.Project;
 
 public final class CrudManager {
 
@@ -42,6 +43,13 @@ public final class CrudManager {
 			ss.close();
 		}
 		return list;
+	}
+	
+	public DAO_projects select_project(String projectName) {
+		SqlSession ss = getSession();
+		String query = R.MyBatis.NAME_SPACE + ".select_project";
+		DAO_projects dao = ss.selectOne(query, projectName);
+		return dao;
 	}
 	
 	public Integer insert_project(DAO_projects dao) {

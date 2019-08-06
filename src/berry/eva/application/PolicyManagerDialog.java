@@ -3,7 +3,6 @@ import java.util.Iterator;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
-import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.TableEditor;
@@ -22,8 +21,6 @@ import org.eclipse.swt.widgets.Text;
 
 import berry.eva.evaluation.Weakness;
 import berry.eva.evaluation.WeaknessEnumeration;
-import berry.eva.project.Project;
-import berry.eva.project.ProjectManager;
 import berry.eva.util.TextConverter;
 
 public class PolicyManagerDialog extends TitleAreaDialog {
@@ -78,13 +75,13 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		label_current_policy.setText("Select Policy : ");
 		
 		combo_policy = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
-		String[] items = new String[] { "default", "???" };
+		String[] items = new String[] { "default" };
 		combo_policy.setItems(items);
 		combo_policy.select(0);
 		
 		// TODO : LoadingPolicyFromDatabase
 		label_new_policy = new Label(innerContainer, SWT.BOLD);
-		label_new_policy.setText("New Poject Name");
+		label_new_policy.setText("New Policy Name");
 		
 		text_new_policy = new Text(innerContainer, SWT.BORDER);
 		
@@ -94,6 +91,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		// TODO : Database setting
 		
 	}
+	
 	private void initTable(ScrolledComposite container) {
 		
 		table = new Table(container, SWT.V_SCROLL | SWT.FULL_SELECTION | SWT.BORDER);

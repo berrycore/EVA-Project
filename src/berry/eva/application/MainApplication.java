@@ -62,6 +62,7 @@ public final class MainApplication extends ApplicationWindow {
 		this.addStatusLine();
 		instance = this;
 	}
+	
 
 	@Override
 	protected Control createContents(Composite parent) {
@@ -146,7 +147,7 @@ public final class MainApplication extends ApplicationWindow {
 				if (dialog.open() == Window.OK) {
 					String projectName = dialog.getProjectName();
 					Project project = new Project(projectName);
-					
+					project.setCreatedTime(project.getCurrentTime());
 					ProjectManager.getInstance().createNewTables(project);
 					getShell().setText(R.EVA_PROJECT + " : " + projectName);
 				}
@@ -166,10 +167,11 @@ public final class MainApplication extends ApplicationWindow {
 				ProjectOpenDialog dialog = new ProjectOpenDialog(getShell());
 				dialog.create();
 				if (dialog.open() == Window.OK) {
-					String projectName = dialog.getProjectName();
-					MainApplication.this.getShell().setText(R.EVA_PROJECT + " : " + projectName);
+					Project currentProject = dialog.getSelectedProject();
+					ProjectManager.getInstance().setCurrentProject(currentProject);
+					System.out.println(currentProject.getName() + " , " + currentProject.getCurrentTime());
 				}
-
+				
 			}
 
 			@Override

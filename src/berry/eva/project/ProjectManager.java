@@ -31,6 +31,13 @@ public class ProjectManager {
 		return list_project;
 	}
 	
+	public Project getProject(String projectName) {
+		CrudManager crud = new CrudManager();
+		DAO_projects dao = crud.select_project(projectName);
+		Project p = new Project(dao.getProjectname(), dao.getCreatedtime());
+		return p;
+	}
+	
 	public void createNewTables(Project project) {
 		CrudManager crud = new CrudManager();
 		DAO_projects dao = new DAO_projects(project.getName(), project.getCreatedTime());
@@ -40,7 +47,7 @@ public class ProjectManager {
 		}
 	}
 	
-	private void setCurrentProject(Project p) {
+	public void setCurrentProject(Project p) {
 		this.currentProject = p;
 	}
 	
