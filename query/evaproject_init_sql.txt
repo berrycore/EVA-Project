@@ -17,5 +17,15 @@ createdtime varchar2(50),
 constraint fk_eva_policys foreign key(projectname) references eva_projects(projectname) on delete cascade
 ); 
 ------------------------------------------------------------------
-insert into projects (projectname, createdtime) values(#{projectname}, #{createdtime})
-insert into polic
+CREATE TABLE eva_vulns (
+projectname varchar2(50),
+policyname varchar2(50),
+cwe_id varchar2(50),
+cwe_enable number(1),
+constraint fk_eva_vulns foreign key(projectname) references eva_projects(projectname) on delete cascade
+);
+
+------------------------------------------------------------------
+CREATE TABLE eva_weakness (
+
+);

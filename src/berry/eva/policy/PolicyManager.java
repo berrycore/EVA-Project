@@ -5,6 +5,7 @@ import java.util.Date;
 
 import berry.eva.database.CrudManager;
 import berry.eva.database.dao.DAO_policy;
+import berry.eva.database.dao.DAO_vulns;
 
 public class PolicyManager {
 
@@ -32,10 +33,17 @@ public class PolicyManager {
 		return this;
 	}
 	
-	public void insertPolicyToDatabase() {
+	public PolicyManager insertPolicyToDatabase() {
 		CrudManager crud = new CrudManager();
 		DAO_policy dao = new DAO_policy(this.policy.getProjectName(), this.policy.getPolicyName(), getCurrentTime());
 		crud.insert_policy(dao);
+		return this;
+	}
+	
+	public PolicyManager insertVulnsToDatabase(DAO_vulns dao) {
+		CrudManager crud = new CrudManager();
+		crud.insert_vulns(dao);
+		return this;
 	}
 	
 	private String getCurrentTime() {

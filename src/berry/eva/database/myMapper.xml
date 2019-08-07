@@ -15,6 +15,9 @@
 	<insert id="insert_policy" parameterType="berry.eva.database.dao.DAO_policy">
 		insert into eva_policys (projectname, policyname, createdtime) values (#{projectname}, #{policyname}, #{createdtime})
 	</insert>
+	<insert id="insert_vulns" parameterType="berry.eva.database.dao.DAO_vulns">
+		insert into eva_vulns (projectname, policyname, cwe_id, cwe_enable) values (#{projectname}, #{policyname}, #{cwe_id}, #{cwe_enable})
+	</insert>
 </mapper>
 
 

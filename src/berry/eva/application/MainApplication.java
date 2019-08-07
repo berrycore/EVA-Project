@@ -1,5 +1,7 @@
 package berry.eva.application;
 
+import java.util.List;
+
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -16,6 +18,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
+import berry.eva.database.dao.DAO_vulns;
+import berry.eva.policy.DTO_vulns;
 import berry.eva.policy.Policy;
 import berry.eva.policy.PolicyManager;
 import berry.eva.project.Project;
@@ -239,6 +243,12 @@ public final class MainApplication extends ApplicationWindow {
 						String currentProjectName = project.getName();
 						Policy policy = new Policy(currentProjectName, newPolicyName);
 						PolicyManager.getInstance().addPolicy(policy).insertPolicyToDatabase();
+						
+						List<DTO_vulns> list_vulns = dialog.getDTOs();
+						for(DTO_vulns dto : list_vulns) {
+							PolicyManager.getInstance().insertVulnsToDatabase(new DAO_vulns(currentProjectName, newPolicyName, dto.getCwe_id(), dto.getUse()));	
+						}
+						
 					}
 					
 					

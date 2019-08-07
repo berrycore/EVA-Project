@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import berry.eva.application.R;
 import berry.eva.database.dao.DAO_policy;
 import berry.eva.database.dao.DAO_projects;
+import berry.eva.database.dao.DAO_vulns;
 import berry.eva.project.Project;
 
 public final class CrudManager {
@@ -85,6 +86,24 @@ public final class CrudManager {
 		}
 		return resultCode;
 	}
+	
+	public Integer insert_vulns(DAO_vulns dao) {
+		Integer resultCode = null;
+		SqlSession ss = getSession();
+		try {
+			String query = R.MyBatis.NAME_SPACE + ".insert_vulns";
+			resultCode = ss.insert(query, dao);
+			if(resultCode == 1) {
+				ss.commit();
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			ss.close();
+		}
+		return resultCode;
+	}
+			
 	
 	/**
 	public ArrayList<String> getColumnName(){

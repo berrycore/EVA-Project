@@ -1,5 +1,7 @@
 package berry.eva.application;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
@@ -21,6 +23,7 @@ import org.eclipse.swt.widgets.Text;
 
 import berry.eva.evaluation.Weakness;
 import berry.eva.evaluation.WeaknessEnumeration;
+import berry.eva.policy.DTO_vulns;
 import berry.eva.util.TextConverter;
 
 public class PolicyManagerDialog extends TitleAreaDialog {
@@ -31,6 +34,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 	private Combo combo_policy;
 	private Table table;
 	private String newPolicyName;
+	private List<DTO_vulns> list_vulns;
 	
 	public PolicyManagerDialog(Shell parentShell) {
 		super(parentShell);
@@ -146,6 +150,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 			editor.minimumWidth = button_use.getSize().x;
 			editor.horizontalAlignment = SWT.CENTER;
 			editor.setEditor(button_use, item, 0);
+			item.setData("button_use", button_use);
 			item.setText(1, TextConverter.IntToAvailable(weakness.getAvailable()));
 			item.setText(2, weakness.getCategory().name());
 			item.setText(3, weakness.getCwe_id());
@@ -158,6 +163,9 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		return i==1? true : false;
 	}
 
+	private Integer isAvailable(boolean flag) {
+		return flag == true? 1 : 0;
+	}
 	
 	@Override
 	protected boolean isResizable() {
@@ -166,13 +174,28 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 
 	@Override
 	protected void okPressed() {
+		
 		newPolicyName = text_new_policy.getText();
-
+		
+		list_vulns = new ArrayList<DTO_vulns>();
+		TableItem[] items = table.getItems();
+		for(int i=0; i<items.length; i++) {
+			
+			Button btn = (Button) items[i].getData("button_use");
+			Integer use = isAvailable(btn.getSelection());
+			String cwe_id = items[i].getText(3);
+			
+			list_vulns.add(new DTO_vulns(use, cwe_id));
+		}
 		super.okPressed();
 	}
 
 	public String getNewPolicyName() {
 		return this.newPolicyName;
+	}
+	
+	public List<DTO_vulns> getDTOs(){
+		return this.list_vulns;
 	}
 	
 	public Label getLabel_current_policy() {
