@@ -8,11 +8,13 @@ import berry.eva.evaluation.Vulnerable;
 
 public class Policy {
 
-	private String name;
+	private String policyName;
+	private String projectName;
 	private List<Vulnerable> list_vulnerable;
 	
-	public Policy(String name) {
-		this.name = name;
+	public Policy(String projectName,String policyName) {
+		this.projectName = projectName;
+		this.policyName = policyName;
 		this.list_vulnerable = new ArrayList<Vulnerable>();
 	}
 	
@@ -20,8 +22,12 @@ public class Policy {
 		return this.iterator();
 	}
 	
-	public String getName() {
-		return this.name;
+	public String getPolicyName() {
+		return this.policyName;
+	}
+	
+	public String getProjectName() {
+		return this.projectName;
 	}
 	
 	public boolean add(Vulnerable vulnerable) {

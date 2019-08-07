@@ -13,7 +13,7 @@
 		insert into eva_projects (projectname, createdtime) values(#{projectname}, #{createdtime})
 	</insert>
 	<insert id="insert_policy" parameterType="berry.eva.database.dao.DAO_policy">
-		insert into eva_policys (policyname, projectname) values (#{policyname}, #{projectname})
+		insert into eva_policys (projectname, policyname, createdtime) values (#{projectname}, #{policyname}, #{createdtime})
 	</insert>
 </mapper>
 

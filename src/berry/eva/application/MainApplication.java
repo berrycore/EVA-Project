@@ -170,6 +170,7 @@ public final class MainApplication extends ApplicationWindow {
 					Project currentProject = dialog.getSelectedProject();
 					ProjectManager.getInstance().setCurrentProject(currentProject);
 					System.out.println(currentProject.getName() + " , " + currentProject.getCurrentTime());
+					getShell().setText(R.EVA_PROJECT + " : " + currentProject.getName());
 				}
 				
 			}
@@ -224,8 +225,8 @@ public final class MainApplication extends ApplicationWindow {
 				PolicyManagerDialog dialog = new PolicyManagerDialog(getShell());
 				dialog.create();
 				if (dialog.open() == Window.OK) {
-					String newPolicyName = dialog.getNewPolicyName();
 					Project project = ProjectManager.getInstance().getCurrentProject();
+					
 					if( project == null ) {
 						
 						MessageBox msgBox2 = new MessageBox(MainApplication.this.getShell(), SWT.ICON_INFORMATION | SWT.OK );
@@ -234,9 +235,10 @@ public final class MainApplication extends ApplicationWindow {
 						msgBox2.open();
 						
 					}else {
-						
-						String projectName = project.getName();
-						PolicyManager.getInstance().addPolicy(new Policy(newPolicyName), projectName);	
+						String newPolicyName = dialog.getNewPolicyName();
+						String currentProjectName = project.getName();
+						Policy policy = new Policy(currentProjectName, newPolicyName);
+						PolicyManager.getInstance().addPolicy(policy).insertPolicyToDatabase();
 					}
 					
 					

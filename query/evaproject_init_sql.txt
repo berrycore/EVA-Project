@@ -11,8 +11,9 @@ constraint pk_eva_projects primary key(projectname)
 );
 -----------------------------------------------------------------
 CREATE TABLE eva_policys (
-policyname varchar2(50),
 projectname varchar2(50),
+policyname varchar2(50),
+createdtime varchar2(50),
 constraint fk_eva_policys foreign key(projectname) references eva_projects(projectname) on delete cascade
 ); 
 ------------------------------------------------------------------
