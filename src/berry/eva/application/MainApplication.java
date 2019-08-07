@@ -18,8 +18,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
-import berry.eva.database.dao.DAO_vulns;
-import berry.eva.policy.DTO_vulns;
+import berry.eva.database.dao.DAO_vulns_insert;
+import berry.eva.policy.DTO_vulns_insert;
 import berry.eva.policy.Policy;
 import berry.eva.policy.PolicyManager;
 import berry.eva.project.Project;
@@ -244,9 +244,9 @@ public final class MainApplication extends ApplicationWindow {
 						Policy policy = new Policy(currentProjectName, newPolicyName);
 						PolicyManager.getInstance().addPolicy(policy).insertPolicyToDatabase();
 						
-						List<DTO_vulns> list_vulns = dialog.getDTOs();
-						for(DTO_vulns dto : list_vulns) {
-							PolicyManager.getInstance().insertVulnsToDatabase(new DAO_vulns(currentProjectName, newPolicyName, dto.getCwe_id(), dto.getUse()));	
+						List<DTO_vulns_insert> list_vulns = dialog.getDTOs();
+						for(DTO_vulns_insert dto : list_vulns) {
+							PolicyManager.getInstance().insertVulnsToDatabase(new DAO_vulns_insert(currentProjectName, newPolicyName, dto.getCwe_id(), dto.getUse()));	
 						}
 						
 					}

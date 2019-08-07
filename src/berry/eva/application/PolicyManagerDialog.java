@@ -21,9 +21,11 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 
+import berry.eva.database.CrudManager;
+import berry.eva.database.dao.DAO_policy;
 import berry.eva.evaluation.Weakness;
 import berry.eva.evaluation.WeaknessEnumeration;
-import berry.eva.policy.DTO_vulns;
+import berry.eva.policy.DTO_vulns_insert;
 import berry.eva.util.TextConverter;
 
 public class PolicyManagerDialog extends TitleAreaDialog {
@@ -34,7 +36,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 	private Combo combo_policy;
 	private Table table;
 	private String newPolicyName;
-	private List<DTO_vulns> list_vulns;
+	private List<DTO_vulns_insert> list_vulns;
 	
 	public PolicyManagerDialog(Shell parentShell) {
 		super(parentShell);
@@ -79,9 +81,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		label_current_policy.setText("Select Policy : ");
 		
 		combo_policy = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
-		String[] items = new String[] { "default" };
-		combo_policy.setItems(items);
-		combo_policy.select(0);
+		
 		
 		// TODO : LoadingPolicyFromDatabase
 		label_new_policy = new Label(innerContainer, SWT.BOLD);
@@ -89,10 +89,24 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		
 		text_new_policy = new Text(innerContainer, SWT.BORDER);
 		
+		combo_policy.setItems(selectPolicyNames());
+		combo_policy.select(0);
 	}
 	
-	private void LoadingPolicyFromDatabase(Composite container) {
-		// TODO : Database setting
+	private String[] selectPolicyNames() {
+		
+		CrudManager crud = new CrudManager();
+		List<DAO_policy> list = crud.select_policys_all();
+		int size = list.size();
+		
+		System.out.println(size);
+		System.out.println(list);
+		
+		String[] items = new String[size];
+		for(int i = 0 ; i<size; i++) {
+			items[i] = new String(list.get(i).getPolicyname());
+		}
+		return items;
 		
 	}
 	
@@ -177,7 +191,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		
 		newPolicyName = text_new_policy.getText();
 		
-		list_vulns = new ArrayList<DTO_vulns>();
+		list_vulns = new ArrayList<DTO_vulns_insert>();
 		TableItem[] items = table.getItems();
 		for(int i=0; i<items.length; i++) {
 			
@@ -185,7 +199,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 			Integer use = isAvailable(btn.getSelection());
 			String cwe_id = items[i].getText(3);
 			
-			list_vulns.add(new DTO_vulns(use, cwe_id));
+			list_vulns.add(new DTO_vulns_insert(use, cwe_id));
 		}
 		super.okPressed();
 	}
@@ -194,7 +208,7 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		return this.newPolicyName;
 	}
 	
-	public List<DTO_vulns> getDTOs(){
+	public List<DTO_vulns_insert> getDTOs(){
 		return this.list_vulns;
 	}
 	

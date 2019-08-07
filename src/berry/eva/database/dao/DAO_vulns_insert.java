@@ -1,19 +1,19 @@
 package berry.eva.database.dao;
 
-public class DAO_vulns {
+public class DAO_vulns_insert {
 
 	private String projectname;
 	private String policyname;
 	private String cwe_id;
 	private Integer cwe_enable;
 
-	public DAO_vulns() {
+	public DAO_vulns_insert() {
 
 	}
 
 	
 	
-	public DAO_vulns(String projectname, String policyname, String cwe_id, Integer cwe_enable) {
+	public DAO_vulns_insert(String projectname, String policyname, String cwe_id, Integer cwe_enable) {
 		super();
 		this.projectname = projectname;
 		this.policyname = policyname;
@@ -74,7 +74,7 @@ public class DAO_vulns {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DAO_vulns other = (DAO_vulns) obj;
+		DAO_vulns_insert other = (DAO_vulns_insert) obj;
 		if (cwe_enable == null) {
 			if (other.cwe_enable != null)
 				return false;

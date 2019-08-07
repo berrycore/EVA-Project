@@ -1,16 +1,16 @@
 package berry.eva.policy;
 
 
-public class DTO_vulns {
+public class DTO_vulns_insert {
 
 	private Integer use;
 	private String cwe_id;
 	
-	public DTO_vulns() {
+	public DTO_vulns_insert() {
 		
 	}
 	
-	public DTO_vulns(Integer use, String cwe_id) {
+	public DTO_vulns_insert(Integer use, String cwe_id) {
 		this.use = use;
 		this.cwe_id = cwe_id;
 	}
@@ -48,7 +48,7 @@ public class DTO_vulns {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DTO_vulns other = (DTO_vulns) obj;
+		DTO_vulns_insert other = (DTO_vulns_insert) obj;
 		if (cwe_id == null) {
 			if (other.cwe_id != null)
 				return false;
