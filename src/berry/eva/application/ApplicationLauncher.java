@@ -17,6 +17,7 @@ public final class ApplicationLauncher {
 		
 		Display display = new Display();
 		SplashWindow splashWindow = new SplashWindow(display);
+		
 		while((Display.getCurrent().isDisposed())) {
 			if(!display.readAndDispatch()) {
 				display.sleep();
