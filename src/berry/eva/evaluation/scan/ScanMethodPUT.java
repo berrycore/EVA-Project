@@ -23,7 +23,7 @@ public class ScanMethodPUT extends AbstractScan {
 		String startTime = getCurrentTime();
 		try {
 			
-			Connection connection = Jsoup.connect(url).userAgent(R.EVA_PROJECT).method(Method.PUT);
+			Connection connection = Jsoup.connect(url).userAgent(R.HTTP_HEAD_CONFIG.userAgent).method(Method.PUT);
 			Request request = connection.request();
 			Response response = connection.execute();			
 			String elapsedTime = getCurrentTime();

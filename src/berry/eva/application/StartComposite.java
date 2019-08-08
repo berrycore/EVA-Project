@@ -55,7 +55,7 @@ public class StartComposite extends Composite {
 		
 		text_root = new Text(container, SWT.BORDER | SWT.SINGLE);
 		text_root.setLayoutData(new RowData(400, SWT.DEFAULT) );
-		text_root.setText("http://127.0.0.1:8188/");
+		text_root.setText("http://127.0.0.1/");
 		text_root.setFont(new Font(getDisplay(), "Consolas", 12, SWT.NONE));
 		
 		button_start = new Button(container, SWT.NONE);

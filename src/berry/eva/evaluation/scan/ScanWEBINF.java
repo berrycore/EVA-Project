@@ -24,9 +24,9 @@ public class ScanWEBINF extends AbstractScan{
 		String startTime = getCurrentTime();
 		
 		try {
-			String root = SearchEngine.getInstance().getRoot();
-			
-			Connection connection = Jsoup.connect(root + "/WEB-INF/web.xml").userAgent(R.EVA_PROJECT).method(Method.GET);
+			String domain = SearchEngine.getInstance().getCurrentDomain();
+			System.out.println("domain" + domain);
+			Connection connection = Jsoup.connect("http://" + domain + "/WEB-INF/web.xml").userAgent(R.HTTP_HEAD_CONFIG.userAgent).method(Method.GET);
 			
 			Request request = connection.request();
 			Response response = connection.execute();
@@ -35,9 +35,7 @@ public class ScanWEBINF extends AbstractScan{
 			String req_body = request.requestBody() == null ? "" : request.requestBody();
 			String resp_body = response.body() == null ? "" : response.body();
 			
-			System.out.println(response.headers());
-			
-			context.setURL(url)
+			context.setURL("http://" + domain + "/WEB-INF/web.xml")
 				.setMethod(Method.GET.toString())
 				.setReq_Timestamp(startTime)
 				.setReq_Header(request.headers())
@@ -48,7 +46,7 @@ public class ScanWEBINF extends AbstractScan{
 				.setResp_Headers(response.headers())
 				.setResp_Body(resp_body)
 				.setCWE_ID("CWE_549");
-			if(response.statusCode() == HttpStatus.SC_OK) {
+			if(response.statusCode() == 200) {
 				context.setVulnerable(true);
 			}else {
 				context.setVulnerable(false);
