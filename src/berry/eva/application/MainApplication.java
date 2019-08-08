@@ -217,11 +217,40 @@ public final class MainApplication extends ApplicationWindow {
 
 	protected MenuManager createSettingMenu() {
 		MenuManager menu = new MenuManager("&Setting", "Id02");
+		
 		menu.add(new Action() {
 
 			@Override
 			public String getText() {
-				return "&Policy";
+				return "&Policy Definition";
+			}
+			
+			@Override
+			public void run() {
+				PolicyDefinitionDialog dialog = new PolicyDefinitionDialog(getShell());
+				dialog.create();
+				if( dialog.open() == Window.OK ) {
+					Project project = ProjectManager.getInstance().getCurrentProject();
+					if( project == null ) {
+						MessageBox msgBox2 = new MessageBox(MainApplication.this.getShell(), SWT.ICON_INFORMATION | SWT.OK );
+						msgBox2.setText("MessageBox");
+						msgBox2.setMessage("프로젝트가 선택되지 않았습니다. 프로젝트를 생성하거나 선택 해야 합니다.");
+						msgBox2.open();
+					}else {
+						String newPolicyName = dialog.getNewPolicyName();	
+						Policy newPolicy = new Policy(project.getName(), newPolicyName);
+						PolicyManager.getInstance().addPolicy(newPolicy).insertPolicyToDatabase();
+					}
+				}
+			}
+			
+		});
+		
+		menu.add(new Action() {
+
+			@Override
+			public String getText() {
+				return "Policy &Management";
 			}
 
 			@Override
@@ -239,34 +268,22 @@ public final class MainApplication extends ApplicationWindow {
 						msgBox2.open();
 						
 					}else {
-						String newPolicyName = dialog.getNewPolicyName();
-						String currentProjectName = project.getName();
-						Policy policy = new Policy(currentProjectName, newPolicyName);
-						PolicyManager.getInstance().addPolicy(policy).insertPolicyToDatabase();
-						
-						List<DTO_vulns_insert> list_vulns = dialog.getDTOs();
-						for(DTO_vulns_insert dto : list_vulns) {
-							PolicyManager.getInstance().insertVulnsToDatabase(new DAO_vulns_insert(currentProjectName, newPolicyName, dto.getCwe_id(), dto.getUse()));	
-						}
-						
+						// TODO
 					}
-					
-					
 				}
 			}
-
 		});
-
+		
 		menu.add(new Action() {
 
 			@Override
 			public String getText() {
-				return "&Config";
+				return "&Basic Config";
 			}
 
 			@Override
 			public void run() {
-				ConfigDialog dialog = new ConfigDialog(getShell());
+				BasicConfigDialog dialog = new BasicConfigDialog(getShell());
 				dialog.create();
 				if(dialog.open() == Window.OK) {
 					

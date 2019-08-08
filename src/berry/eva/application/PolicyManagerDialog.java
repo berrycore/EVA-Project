@@ -83,32 +83,30 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		combo_policy = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
 		
 		
-		// TODO : LoadingPolicyFromDatabase
-		label_new_policy = new Label(innerContainer, SWT.BOLD);
-		label_new_policy.setText("New Policy Name");
-		
-		text_new_policy = new Text(innerContainer, SWT.BORDER);
+
 		
 		combo_policy.setItems(selectPolicyNames());
 		combo_policy.select(0);
 	}
 	
+
 	private String[] selectPolicyNames() {
-		
+
 		CrudManager crud = new CrudManager();
 		List<DAO_policy> list = crud.select_policys_all();
 		int size = list.size();
-		
+
 		System.out.println(size);
 		System.out.println(list);
-		
+
 		String[] items = new String[size];
-		for(int i = 0 ; i<size; i++) {
+		for (int i = 0; i < size; i++) {
 			items[i] = new String(list.get(i).getPolicyname());
 		}
 		return items;
-		
+
 	}
+	
 	
 	private void initTable(ScrolledComposite container) {
 		

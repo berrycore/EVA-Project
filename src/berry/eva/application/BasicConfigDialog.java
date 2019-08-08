@@ -1,6 +1,5 @@
 package berry.eva.application;
 
-import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -13,11 +12,10 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
-import org.omg.PortableInterceptor.USER_EXCEPTION;
 
 import berry.eva.core.Config;
 
-public class ConfigDialog extends TitleAreaDialog {
+public class BasicConfigDialog extends TitleAreaDialog {
 
 	private Label label_userAgent;
 	private Label label_pragma;
@@ -30,7 +28,7 @@ public class ConfigDialog extends TitleAreaDialog {
 	private Config config;
 	
 	
-	public ConfigDialog(Shell parentShell) {
+	public BasicConfigDialog(Shell parentShell) {
 		super(parentShell);
 
 	}
@@ -87,25 +85,25 @@ public class ConfigDialog extends TitleAreaDialog {
 		label_userAgent.setText("User-Agent        ");
 		text_userAgent = new Text(composite_useragent, SWT.BORDER);
 		text_userAgent.setLayoutData(new RowData(350, SWT.DEFAULT));
-		text_userAgent.setText("Mozilla/5.0 (Windows NT 6.3; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0");
+		text_userAgent.setText(R.HTTP_HEAD_CONFIG.userAgent);
 				
 		label_pragma = new Label(composite_pragma, SWT.NONE);
 		label_pragma.setText("Pragma             ");
 		text_pragma = new Text(composite_pragma, SWT.BORDER);
 		text_pragma.setLayoutData(new RowData(350, SWT.DEFAULT));
-		text_pragma.setText("no-cache");
+		text_pragma.setText(R.HTTP_HEAD_CONFIG.pragma);
 		
 		label_cacheControl = new Label(composite_cacheControl, SWT.NONE);
 		label_cacheControl.setText("Cache-Control    ");
 		text_cacheControl = new Text(composite_cacheControl, SWT.BORDER);
 		text_cacheControl.setLayoutData(new RowData(350, SWT.DEFAULT));
-		text_cacheControl.setText("no-cache");
+		text_cacheControl.setText(R.HTTP_HEAD_CONFIG.cacheControl);
 		
 		label_cookie = new Label(composite_cookie, SWT.NONE);
 		label_cookie.setText("Cookie              ");
 		text_cookie = new Text(composite_cookie, SWT.BORDER);
 		text_cookie.setLayoutData(new RowData(350, SWT.DEFAULT));
-		text_cookie.setText("");
+		text_cookie.setText(R.HTTP_HEAD_CONFIG.cookie);
 	}
 	
 	@Override

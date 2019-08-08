@@ -1,6 +1,7 @@
 package berry.eva.application;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
@@ -15,9 +16,10 @@ import berry.eva.core.SearchEngine;
 public class StartComposite extends Composite {
 
 	private MainApplication mainApp;
-	Label label_start;
-	Button button_start;
-	Text text_root;
+	private Label label_start;
+	private Button button_start;
+	private Text text_root;
+	private Label label_warning;
 	
 	
 	public StartComposite(MainApplication mainApp ,Composite parent, int style) {
@@ -46,5 +48,10 @@ public class StartComposite extends Composite {
 				
 			}
 		});
+		
+		label_warning = new Label(this, SWT.BOLD);
+		label_warning.setText(R.TEXT.WARNING);
+		Font font = new Font(mainApp.getShell().getDisplay(), "Cambria", 16, SWT.ITALIC);
+		label_warning.setFont(font);
 	}
 }
