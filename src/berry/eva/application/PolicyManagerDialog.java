@@ -8,6 +8,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.custom.TableEditor;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -31,11 +32,9 @@ import berry.eva.util.TextConverter;
 public class PolicyManagerDialog extends TitleAreaDialog {
 
 	private Label label_current_policy;
-	private Label label_new_policy;
-	private Text  text_new_policy;
 	private Combo combo_policy;
 	private Table table;
-	private String newPolicyName;
+	private String currentPolicyName;
 	private List<DTO_vulns_insert> list_vulns;
 	
 	public PolicyManagerDialog(Shell parentShell) {
@@ -79,12 +78,10 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		
 		label_current_policy = new Label(innerContainer, SWT.BOLD);
 		label_current_policy.setText("Select Policy : ");
+		label_current_policy.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		
 		combo_policy = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
-		
-		
-
-		
+		combo_policy.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		combo_policy.setItems(selectPolicyNames());
 		combo_policy.select(0);
 	}
@@ -187,7 +184,8 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 		
-		newPolicyName = text_new_policy.getText();
+		currentPolicyName = combo_policy.getText();
+		
 		
 		list_vulns = new ArrayList<DTO_vulns_insert>();
 		TableItem[] items = table.getItems();
@@ -202,25 +200,25 @@ public class PolicyManagerDialog extends TitleAreaDialog {
 		super.okPressed();
 	}
 
-	public String getNewPolicyName() {
-		return this.newPolicyName;
+	public String getCurrentPolicyName() {
+		return this.currentPolicyName;
 	}
 	
 	public List<DTO_vulns_insert> getDTOs(){
 		return this.list_vulns;
 	}
 	
-	public Label getLabel_current_policy() {
-		return label_current_policy;
-	}
-
-	public Combo getCombo_policy() {
-		return combo_policy;
-	}
-
-	public Table getTable() {
-		return table;
-	}
+//	public Label getLabel_current_policy() {
+//		return label_current_policy;
+//	}
+//
+//	public Combo getCombo_policy() {
+//		return combo_policy;
+//	}
+//
+//	public Table getTable() {
+//		return table;
+//	}
 	
 	
 	

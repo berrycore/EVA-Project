@@ -14,7 +14,7 @@ import org.jsoup.Jsoup;
 import berry.eva.application.R;
 import berry.eva.core.Context;
 
-public class HTTPMethodScan extends AbstractScan {
+public class ScanMethodPUT extends AbstractScan {
 
 	@Override
 	public Context execute(String url) {

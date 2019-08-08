@@ -1,6 +1,7 @@
 package berry.eva.application;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.Display;
@@ -21,6 +22,7 @@ public class SplashWindow {
 		final ProgressBar bar = new ProgressBar(splash, SWT.NONE);
 		final Text text = new Text(splash, SWT.BOLD);
 		text.setText("Loading..");
+		text.setFont(new Font(display, "Consolas", 12, SWT.NONE));
 		bar.setMaximum(SPLASH_MAX);
 
 		Label label = new Label(splash, SWT.NONE);

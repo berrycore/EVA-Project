@@ -2,6 +2,7 @@ package berry.eva.application;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -48,6 +49,11 @@ public class ReqRespComposite extends Composite {
 		text_request_body.setText("text_request_body");
 		text_response_header.setText("text_response_header");
 		text_response_body.setText("text_response_body");
+		
+		text_request_header.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
+		text_request_body.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
+		text_response_header.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
+		text_response_body.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		
 		sashForm_main.setWeights(new int[] { 5, 5});
 		sashForm_request.setWeights(new int[] {4,6});

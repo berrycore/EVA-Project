@@ -22,13 +22,8 @@ public class PolicyManager {
 	public Policy getPolicy() {
 		return this.policy;
 	}
-	
-	public void setPolicy(Policy policy) {
-		this.policy = policy;
-	}
 
-
-	public PolicyManager addPolicy(Policy policy) {
+	public PolicyManager setPolicy(Policy policy) {
 		this.policy = policy;
 		return this;
 	}

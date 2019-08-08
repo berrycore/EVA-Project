@@ -60,16 +60,18 @@ public class PolicyDefinitionDialog extends TitleAreaDialog {
 
 		label_policy = new Label(innerContainer, SWT.BOLD);
 		label_policy.setText("Available Policy : ");
+		label_policy.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 
 		label_output = new Label(innerContainer, SWT.BOLD);
 		label_output.setText(availablePolicyNames);
-		Font font = new Font(parent.getDisplay(), "Arial", 12, SWT.ITALIC);
-		label_output.setFont(font);
+		label_output.setFont(new Font(getShell().getDisplay(), "Consolas", 14, SWT.BOLD));
 		
 		label_new_policy = new Label(innerContainer, SWT.BOLD);
 		label_new_policy.setText("New Policy Name");
+		label_new_policy.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		
 		text_new_policy = new Text(innerContainer, SWT.BORDER);
+		text_new_policy.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 	}
 
 	private String selectPolicyNames() {

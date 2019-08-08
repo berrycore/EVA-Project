@@ -9,6 +9,7 @@ import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -19,6 +20,8 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 
 import berry.eva.database.dao.DAO_vulns_insert;
+import berry.eva.evaluation.scan.ScanMethodPUT;
+import berry.eva.evaluation.scan.ScanWEBINF;
 import berry.eva.policy.DTO_vulns_insert;
 import berry.eva.policy.Policy;
 import berry.eva.policy.PolicyManager;
@@ -239,7 +242,8 @@ public final class MainApplication extends ApplicationWindow {
 					}else {
 						String newPolicyName = dialog.getNewPolicyName();	
 						Policy newPolicy = new Policy(project.getName(), newPolicyName);
-						PolicyManager.getInstance().addPolicy(newPolicy).insertPolicyToDatabase();
+						PolicyManager.getInstance().setPolicy(newPolicy).insertPolicyToDatabase();
+						
 					}
 				}
 			}
@@ -269,6 +273,19 @@ public final class MainApplication extends ApplicationWindow {
 						
 					}else {
 						// TODO
+						String selectedPolicyName = dialog.getCurrentPolicyName();
+						String projectName =project.getName(); 
+						Policy newPolicy = new Policy(project.getName(), projectName);
+						PolicyManager.getInstance().setPolicy(newPolicy);
+						
+						// DUMMY
+						PolicyManager.getInstance().getPolicy().add(new ScanMethodPUT());
+						PolicyManager.getInstance().getPolicy().add(new ScanWEBINF());
+						
+						List<DTO_vulns_insert> list_dto_vulns = dialog.getDTOs();
+						for(DTO_vulns_insert dto : list_dto_vulns) {
+							System.out.println(dto);
+						}
 					}
 				}
 			}

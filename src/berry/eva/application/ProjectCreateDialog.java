@@ -3,6 +3,7 @@ package berry.eva.application;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -45,6 +46,7 @@ public class ProjectCreateDialog extends TitleAreaDialog {
 	private void createProjectName(Composite container) {
 		Label label_project_name = new Label(container, SWT.NONE);
 		label_project_name.setText("Project Name : ");
+		label_project_name.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		GridData gridData = new GridData();
 		gridData.grabExcessHorizontalSpace = true;
 		gridData.horizontalAlignment = GridData.FILL;

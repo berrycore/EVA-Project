@@ -2,6 +2,8 @@ package berry.eva.application;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
+import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowData;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
@@ -25,18 +27,40 @@ public class StartComposite extends Composite {
 	public StartComposite(MainApplication mainApp ,Composite parent, int style) {
 		super(parent, style);
 		this.mainApp = mainApp;
-		this.setLayout(new RowLayout());
+		this.setLayout(new FillLayout(SWT.VERTICAL));
 		
+		initComponents(this);
+		initWarning(this);
 		
-		label_start = new Label(this, SWT.NONE);
+	}
+	
+	private void initWarning(Composite parent) {
+		Composite container = new Composite(parent, SWT.NONE);
+		container.setLayout(new FillLayout(SWT.HORIZONTAL));
+		
+		label_warning = new Label(container, SWT.BOLD);
+		label_warning.setText(R.TEXT.WARNING);
+		label_warning.setFont(new Font(getDisplay(), "Consolas", 12, SWT.NONE));
+		
+	}
+	
+	private void initComponents(Composite parent) {
+		Composite container = new Composite(parent, SWT.NONE);
+		//container.setLayout(new FillLayout(SWT.HORIZONTAL));
+		container.setLayout(new RowLayout(SWT.HORIZONTAL));
+		
+		label_start = new Label(container, SWT.NONE);
 		label_start.setText("Target : ");
+		label_start.setFont(new Font(getDisplay(), "Consolas", 12, SWT.NONE));
 		
-		text_root = new Text(this, SWT.BORDER | SWT.SINGLE);
+		text_root = new Text(container, SWT.BORDER | SWT.SINGLE);
 		text_root.setLayoutData(new RowData(400, SWT.DEFAULT) );
 		text_root.setText("http://127.0.0.1:8188/");
+		text_root.setFont(new Font(getDisplay(), "Consolas", 12, SWT.NONE));
 		
-		button_start = new Button(this, SWT.NONE);
+		button_start = new Button(container, SWT.NONE);
 		button_start.setText("START");
+		button_start.setFont(new Font(getDisplay(), "Consolas", 12, SWT.NONE));
 		button_start.addListener(SWT.Selection, new Listener() {
 			
 			@Override
@@ -48,10 +72,5 @@ public class StartComposite extends Composite {
 				
 			}
 		});
-		
-		label_warning = new Label(this, SWT.BOLD);
-		label_warning.setText(R.TEXT.WARNING);
-		Font font = new Font(mainApp.getShell().getDisplay(), "Cambria", 16, SWT.ITALIC);
-		label_warning.setFont(font);
 	}
 }

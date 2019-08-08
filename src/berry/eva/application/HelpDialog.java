@@ -3,6 +3,7 @@ package berry.eva.application;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -47,6 +48,7 @@ public class HelpDialog extends TitleAreaDialog{
 		
 		Label label_msg = new Label(parent, SWT.NONE); 
 		label_msg.setText( R.EVA_PROJECT +"\n\n"+ R.TEXT.HElP_VERSION + "\n" + R.TEXT.HELP_CONTACT + "\n" + R.TEXT.HELP_EMAIL);
+		label_msg.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		label_msg.pack();
 	}
 	

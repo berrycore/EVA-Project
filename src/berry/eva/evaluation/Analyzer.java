@@ -13,6 +13,8 @@ import berry.eva.core.ContextManager;
 import berry.eva.core.Status;
 import berry.eva.core.Status.Scanning;
 import berry.eva.core.Status.Searching;
+import berry.eva.evaluation.scan.ScanMethodPUT;
+import berry.eva.evaluation.scan.ScanWEBINF;
 import berry.eva.core.URLQueue;
 import berry.eva.policy.PolicyManager;
 
@@ -83,6 +85,8 @@ public final class Analyzer implements Runnable {
 	@Override
 	public void run() {
 
+		
+		
 		Status.TASK_COUNT = URLQueue.getInstance().getSize() * PolicyManager.getInstance().getPolicy().getList().size();
 		System.out.println(Status.TASK_COUNT);
 		

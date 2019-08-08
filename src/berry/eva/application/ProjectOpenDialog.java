@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.jface.dialogs.IMessageProvider;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -59,6 +60,7 @@ public class ProjectOpenDialog extends TitleAreaDialog{
 		
 		label_project = new Label(innerContainer, SWT.BOLD);
 		label_project.setText("Select Project : ");
+		label_project.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		
 		combo_project = new Combo(innerContainer, SWT.DROP_DOWN | SWT.READ_ONLY);
 		

@@ -4,6 +4,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
@@ -47,6 +48,7 @@ public class ReferenceDialog extends TitleAreaDialog {
 		container.setLayout(new RowLayout(SWT.VERTICAL));
 		Group group = new Group(container, SWT.SHADOW_IN);
 		group.setText("About. Web Security");
+		group.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		group.pack();
 		
 		
@@ -54,6 +56,7 @@ public class ReferenceDialog extends TitleAreaDialog {
 		
 		link_owasp.setText("<a href=\"https://owasp.org/\">https://owasp.org/</a>");
 		link_owasp.setLocation(20, 20);
+		link_owasp.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		link_owasp.pack();
 		link_owasp.addSelectionListener(new SelectionAdapter() {
 
@@ -66,6 +69,7 @@ public class ReferenceDialog extends TitleAreaDialog {
 		
 		Link link_cwe = new Link(group, SWT.ITALIC);
 		link_cwe.setText("<a href=\"https://cwe.mitre.org/\">https://cwe.mitre.org/</a>");
+		link_cwe.setFont(new Font(getShell().getDisplay(), "Consolas", 12, SWT.NONE));
 		link_cwe.setLocation(20, 40);
 		link_cwe.pack();
 		link_cwe.addSelectionListener(new SelectionAdapter() {
